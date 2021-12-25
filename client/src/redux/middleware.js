@@ -2,6 +2,8 @@ import axios from "axios"
 import { store } from "../redux/store"
 import { updateCartFromDB } from "./cartRedux"
 
+const BASE_URL = "http://actioncore.herokuapp.com/api"
+
 const middleWare = (store) => (next) => (action) => {
     console.log("actionType ==>", action.type)
 
@@ -85,7 +87,7 @@ const middleWare = (store) => (next) => (action) => {
 }
 
 async function saveCartToDB(userId, updatedCart) {
-    await axios.put(`/carts/${userId}`,
+    await axios.put(`${BASE_URL}/carts/${userId}`,
         { _id: userId, ...updatedCart },
         {
             headers: {
@@ -96,7 +98,7 @@ async function saveCartToDB(userId, updatedCart) {
 }
 
 async function getCartOnLogin(userId) {
-    const cart = await axios.get(`/carts/find/${userId}`, {
+    const cart = await axios.get(`${BASE_URL}/carts/find/${userId}`, {
         headers: {
             token: `Bearer ${localStorage.getItem("token")}`
         }
