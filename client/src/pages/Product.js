@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import Navbar from "../components/Navbar"
-import Announcement from "../components/Announcement"
+// import Announcement from "../components/Announcement"
 import Newsletter from "../components/Newsletter"
 import Footer from "../components/Footer"
 import { Add, Remove } from "@material-ui/icons"
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
 import { addProduct } from "../redux/cartRedux"
 import { useDispatch, useSelector } from "react-redux"
+// import axios from "axios"
 
 
 const Container = styled.div``
@@ -130,9 +131,10 @@ const Product = () => {
     const id = location.pathname.split("/")[2]
     const [product, setProduct] = useState()
     const [quantity, setQuantity] = useState(1)
-    const [color, setColor] = useState("")
-    const [size, setSize] = useState("")
+    // const [color, setColor] = useState("")
+    // const [size, setSize] = useState("")
     const cart = useSelector(state => state.cart)
+    // const user = useSelector(state => state.user.currentUser)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -140,7 +142,6 @@ const Product = () => {
             try {
                 const res = await publicRequest.get("/products/find/" + id);
                 setProduct(res.data)
-                // console.log(product)
             } catch { }
         }
         getProduct()
@@ -153,22 +154,13 @@ const Product = () => {
             setQuantity(quantity + 1)
         }
     }
-    console.log("cart", cart)
-    const handleClick = () => {
-        // console.log(cart.products)
-        // const productsInCart = [...cart.products]
-
-        // productsInCart?.forEach(item => {
-        //     if (item._id === product._id) {
-        //         item.quantity += quantity
-        dispatch(
-            addProduct({ ...product, quantity, color, size })
-        )
-        //     }
-        // })
+    const handleClick = async () => {
         // dispatch(
-        //     addProduct([...productsInCart, { ...product, quantity, color, size }])
+        //     clearCart()
         // )
+        dispatch(
+            addProduct({ ...product, quantity })
+        )
     }
 
     return (
@@ -184,17 +176,21 @@ const Product = () => {
                     <Desc>{product?.desc}</Desc>
                     <Price>&#8377; {product?.price}</Price>
                     <FilterContainer>
-                        <Filter>
+                        {/* <Filter>
                             <FilterTitle>Color</FilterTitle>
                             {product?.color.map((c) => <FilterColor color={c} key={c} onClick={() => setColor(c)} />
                             )}
+                        </Filter> */}
+                        <Filter>
+                            <FilterTitle>Color</FilterTitle>
+                            {product?.color.map((c) => <FilterColor color={c} key={c} />)}
                         </Filter>
                         {product?.size.length > 0 && <Filter>
                             <FilterTitle>Size</FilterTitle>
-                            <FilterSize onChange={(e) => setSize(e.target.value)}>
+                            {/* <FilterSize onChange={(e) => setSize(e.target.value)}>
                                 {product?.size.map((s) => <FilterSizeOption key={s}>{s}</FilterSizeOption>
                                 )}
-                            </FilterSize>
+                            </FilterSize> */}
                         </Filter>}
                     </FilterContainer>
                     <AddContainer>

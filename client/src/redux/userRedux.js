@@ -1,29 +1,52 @@
 import { createSlice } from "@reduxjs/toolkit"
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { userRequest } from "../requestMethods";
 
 const userSlice = createSlice({
     name: "user",
     initialState: {
         currentUser: null,
         isFetching: false,
-        error: false
+        error: false,
     },
     reducers: {
         loginStart: (state) => {
-            state.isFetching = true
+            state.isFetching = true;
         },
         loginSuccess: (state, action) => {
             state.isFetching = false;
-            state.currentUser = action.payload
+            state.currentUser = action.payload;
+
         },
         loginFailure: (state) => {
             state.isFetching = false;
-            state.error = true
+            state.error = true;
         },
         logOut: (state, action) => {
-            state.currentUser = null
+            state.currentUser = null;
+        },
+        registrationStart: (state) => {
+            state.isFetching = true;
+        },
+        registrationSuccess: (state, action) => {
+            state.isFetching = false;
+            state.currentUser = action.payload;
+        },
+        registrationFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
         }
     }
 })
 
-export const { loginStart, loginSuccess, loginFailure, logOut } = userSlice.actions
+export const {
+    loginStart,
+    loginSuccess,
+    loginFailure,
+    logOut,
+    registrationStart,
+    registrationSuccess,
+    registrationFailure,
+} = userSlice.actions
 export default userSlice.reducer 

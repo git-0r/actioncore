@@ -1,5 +1,6 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore, combineReducers, applyMiddleware } from "@reduxjs/toolkit";
 import cartReducer from "../redux/cartRedux"
+import { someMiddleWare } from "../pages/Home";
 import userReducer from "./userRedux"
 import {
     persistStore,
@@ -12,6 +13,7 @@ import {
     REGISTER,
 } from "redux-persist"
 import storage from "redux-persist/lib/storage"
+import middleWare from "./middleware";
 
 const persistConfig = {
     key: "root",
@@ -29,7 +31,9 @@ export const store = configureStore({
         serializableCheck: {
             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
         }
-    })
+    }).concat(middleWare),
+    // applyMiddleware(someMiddleWare)
+
 })
 
 export let persistor = persistStore(store)

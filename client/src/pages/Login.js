@@ -1,8 +1,10 @@
+// import axios from "axios"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { login } from "../redux/apiCalls"
+// import { userRequest } from "../requestMethods"
 import { mobile } from "../responsive"
 
 const Container = styled.div`
@@ -109,8 +111,8 @@ const Login = () => {
     const handleClick = (e) => {
         e.preventDefault()
         login(dispatch, { username, password })
-
     }
+
 
     return (
         <Container>

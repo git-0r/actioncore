@@ -1,4 +1,4 @@
-import { ArrowForward, ArrowRight, EmailOutlined, Facebook, Instagram, Phone, Pinterest, Reddit, Room, Twitter, YouTube } from "@material-ui/icons"
+import { ArrowRight, EmailOutlined, Facebook, Instagram, Phone, Reddit, Room, Twitter, YouTube } from "@material-ui/icons"
 import styled from "styled-components"
 import { mobile } from "../responsive"
 

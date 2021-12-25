@@ -1,11 +1,10 @@
 import { Badge } from "@material-ui/core"
-import { LocalMallOutlined, PersonOutline, Search, SearchOutlined, ShoppingCartOutlined, Menu, Close } from "@material-ui/icons"
+import { LocalMallOutlined, PersonOutline, Search, SearchOutlined, Menu, Close } from "@material-ui/icons"
 import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 import { mobile } from "../responsive"
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import Sidebar from "./Navigation"
 import Navigation from "./Navigation"
 import { logOut } from "../redux/userRedux"
 import { clearCart } from "../redux/cartRedux"
@@ -166,7 +165,6 @@ const Navbar = () => {
     const [navigation, setNavigation] = useState(false)
     const [searchBar, setSearchBar] = useState(false)
     const user = useSelector(state => state.user.currentUser)
-    console.log(user)
     const dispatch = useDispatch()
 
     const logout = () => {
@@ -262,7 +260,7 @@ const Navbar = () => {
                     <MenuOption>
                         {/* <Link to="/login"> */}
                         <PersonOutline style={{ color: "white" }}></PersonOutline>
-                        <MenuItem>
+                        <MenuItem style={{ zIndex: "4" }}>
                             {!user && <Link to="/login"><MenuItems>Login</MenuItems></Link>}
                             {!user && <Link to="/register"><MenuItems>Register</MenuItems></Link>}
                             {user && <MenuItems onClick={logout}>Log Out</MenuItems>}

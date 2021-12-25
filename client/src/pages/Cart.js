@@ -1,11 +1,10 @@
 import styled from "styled-components"
 import Navbar from "../components/Navbar"
-import Announcement from "../components/Announcement"
+// import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
 import { Add, Remove } from "@material-ui/icons"
 import { mobile } from "../responsive"
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
 import { addProduct, removeProduct } from "../redux/cartRedux"
 
 const Container = styled.div``
@@ -156,8 +155,6 @@ const Button = styled.button`
 
 const Cart = () => {
     const cart = useSelector(state => state.cart)
-    // useSelector(state => console.log(state))
-    // // const [products, setProducts] = useState(cart.products)
     const dispatch = useDispatch()
 
     const handleQuantity = (operation, product) => {
@@ -167,10 +164,9 @@ const Cart = () => {
             )
         } else if (operation === "remove") {
             dispatch(
-                removeProduct(product)
+                removeProduct({ ...product, quantity: 1 })
             )
         }
-
     }
 
     return (
