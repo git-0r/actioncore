@@ -14,13 +14,10 @@ export const login = async (dispatch, user) => {
     try {
         const res = await publicRequest.post("/auth/login", user)
         localStorage.setItem("token", res.data.accessToken)
-        console.log(localStorage.getItem("token"))
-        // console.log(res.data)
         dispatch(loginSuccess(res.data))
 
     } catch (error) {
-        console.log(error)
-        // dispatch(loginFailure())
+        dispatch(loginFailure())
     }
 }
 

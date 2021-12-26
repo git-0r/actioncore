@@ -9,17 +9,16 @@ import { register } from "../redux/apiCalls"
 const Container = styled.div`
     width: 100vw;
     height: 100vh;
-    // background: url("https://i.ibb.co/8jcm5X4/black-friday-elements-assortment-23-2149074076.jpg") no-repeat;
-    // background-size: cover;
     background: #202020;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    ${mobile({ flexDirection: "column" })}
 `
 
 const Wrapper = styled.div`
     width: 40%;
-    padding: 20px;
+    padding: 10px 20px;
     background-color: transparent;
     border: 1px solid #FF3535;
     border-radius: 5px;
@@ -64,6 +63,17 @@ const Buttons = styled.div`
     width:100%;
 `
 
+const Logo = styled.h1`
+    margin: 0;
+    padding: 5px;
+    border-bottom: 3px solid #FF3535;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 70px;
+    letter-spacing: 2px;
+    color:white;
+    ${mobile({ fontSize: "20px" })}
+`
+
 const Register = () => {
 
     const [name, setName] = useState("")
@@ -88,6 +98,7 @@ const Register = () => {
 
     return (
         <Container>
+            {/* <Logo>ACTION<br />CORE</Logo> */}
             <Wrapper>
                 <Title>CREATE AN ACCOUNT</Title>
                 <Form onSubmit={handleRegistration}>

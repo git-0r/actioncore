@@ -8,6 +8,7 @@ import { useState } from "react"
 import Navigation from "./Navigation"
 import { logOut } from "../redux/userRedux"
 import { clearCart } from "../redux/cartRedux"
+import { publicRequest } from "../requestMethods"
 // ${mobile({ height: "fit-content" })}
 
 
@@ -158,12 +159,14 @@ const NavigationToggle = styled.div`
     display:none;
     align-items:center;
     justify-content:center;
+    cursor:pointer;
     ${mobile({ display: "flex" })}
 `
 const Navbar = () => {
     const quantity = useSelector(state => state.cart.quantity)
     const [navigation, setNavigation] = useState(false)
     const [searchBar, setSearchBar] = useState(false)
+    const [searchText, setSearchText] = useState("")
     const user = useSelector(state => state.user.currentUser)
     const dispatch = useDispatch()
 
@@ -296,9 +299,11 @@ const Navbar = () => {
                 </NavigationMenu>
             </Wrapper>
             {searchBar && <SearchContainer>
-                <Input />
+                <Input onChange={(e) => setSearchText(e.target.value)} />
                 <SearchIcon>
-                    <Search style={{ color: "gray", fontSize: "28", cursor: "pointer" }} />
+                    <Link to={`/searchProducts/${searchText}`}>
+                        <Search style={{ color: "gray", fontSize: "28", cursor: "pointer" }} />
+                    </Link>
                 </SearchIcon>
                 <Close style={{ color: "gray", cursor: "pointer" }} onClick={() => setSearchBar(!searchBar)}></Close>
             </SearchContainer>}

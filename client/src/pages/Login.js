@@ -102,6 +102,17 @@ const FormLinks = styled.div`
     cursor: pointer;
 `
 
+const Logo = styled.h1`
+    margin: 0;
+    padding: 5px;
+    border-bottom: 5px solid #FF3535;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 70px;
+    letter-spacing: 2px;
+    color:white;
+    ${mobile({ fontSize: "40px" })}
+`
+
 const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -116,8 +127,9 @@ const Login = () => {
 
     return (
         <Container>
+            <Logo>ACTION<br />CORE</Logo>
             {/* <Text>Play Has No Age</Text> */}
-            <Text>Play Has No Age <br />Play Has No Limits</Text>
+            {/* <Text>Play Has No Age <br />Play Has No Limits</Text> */}
             <Wrapper>
                 <Title>SIGN IN</Title>
                 <Form>

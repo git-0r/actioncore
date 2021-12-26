@@ -1,6 +1,6 @@
 import { ArrowDropDown } from "@material-ui/icons"
 import { useState } from "react"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 // import { mobile } from "../responsive"
 
 const Wrapper = styled.div`
@@ -18,6 +18,18 @@ const MenuOption = styled.div`
         color: #FF3535;
     }
 `
+const animateMenu = keyframes`
+    from {
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+    
+`
 
 const MenuItem = styled.ul`
     color: #191919;
@@ -26,7 +38,7 @@ const MenuItem = styled.ul`
     margin: 5px;
     text-align: center;
     border: 1px solid #FF3535;
-    // display: none;
+    animation: ${animateMenu} 0.5s ease;
 `
 const MenuItems = styled.li`
     list-style: none;
@@ -62,8 +74,9 @@ const Navigation = () => {
                     <MenuItems>Desktops</MenuItems>
                     <MenuItems>Motherboards</MenuItems>
                     <MenuItems>Graphic Cards</MenuItems>
-                    <MenuItems>Monitors</MenuItems>
-                    <MenuItems>Power Supply</MenuItems>
+                    <MenuItems>More</MenuItems>
+                    {/* <MenuItems>Monitors</MenuItems> */}
+                    {/* <MenuItems>Power Supply</MenuItems>
                     <MenuItems>External Graphics</MenuItems>
                     <MenuItems>Networking</MenuItems>
                     <MenuItems>Keyboards</MenuItems>
@@ -74,7 +87,7 @@ const Navigation = () => {
                     <MenuItems>Streaming Kit</MenuItems>
                     <MenuItems>Controllers</MenuItems>
                     <MenuItems>Storage</MenuItems>
-                    <MenuItems>Cooling</MenuItems>
+                    <MenuItems>Cooling</MenuItems> */}
                 </MenuItem>}
                 {/* <MenuItems>Phones</MenuItems>
                         <MenuItems>Desktops</MenuItems> */}
@@ -98,7 +111,7 @@ const Navigation = () => {
                     <MenuItems>Wallpaper</MenuItems>
                     <MenuItems>Aura Sync</MenuItems>
                     <MenuItems>Armoury Crate</MenuItems>
-                    <MenuItems>ROG India Product Guide</MenuItems>
+                    <MenuItems>India Product Guide</MenuItems>
                 </MenuItem>}
             </MenuOption>
             <MenuOption>
@@ -107,8 +120,8 @@ const Navigation = () => {
                     <ArrowDropDown></ArrowDropDown>
                 </MenuTitle>
                 {menuItem === "community" && <MenuItem>
-                    <MenuItems>ROG Elite Program</MenuItems>
-                    <MenuItems>ROG esports teams</MenuItems>
+                    <MenuItems>Elite Program</MenuItems>
+                    <MenuItems>esports teams</MenuItems>
                     <MenuItems>Blogs</MenuItems>
                     <MenuItems>News and Articles</MenuItems>
                 </MenuItem>}

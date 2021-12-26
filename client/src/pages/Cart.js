@@ -6,6 +6,7 @@ import { Add, Remove } from "@material-ui/icons"
 import { mobile } from "../responsive"
 import { useDispatch, useSelector } from "react-redux"
 import { addProduct, removeProduct } from "../redux/cartRedux"
+import axios from "axios"
 
 const Container = styled.div``
 
@@ -79,7 +80,10 @@ const Details = styled.div`
 
 const ProductName = styled.span``
 
-const ProductId = styled.span``
+const ProductId = styled.span`
+    font-size: 12px;
+    color:gray;
+`
 
 const ProductColor = styled.div`
     width: 20px;
@@ -151,10 +155,12 @@ const Button = styled.button`
     background-color: black;
     color: white;
     font-weight: 600;
+    cursor:pointer;
 `
 
 const Cart = () => {
     const cart = useSelector(state => state.cart)
+    const userId = useSelector(state => state.user.currentUser._id)
     const dispatch = useDispatch()
 
     const handleQuantity = (operation, product) => {
@@ -167,6 +173,13 @@ const Cart = () => {
                 removeProduct({ ...product, quantity: 1 })
             )
         }
+    }
+
+    const sendPaymentRequest = async () => {
+        const checkoutUrl = await axios.post("http://localhost:3001/api/checkout/payment", { ...cart, userId })
+        console.log(checkoutUrl.data)
+
+        window.location.href = checkoutUrl.data
     }
 
     return (
@@ -244,7 +257,7 @@ const Cart = () => {
                             <SummaryItemText>Total</SummaryItemText>
                             <SummaryItemPrice>&#8377; {cart.total}</SummaryItemPrice>
                         </SummaryItem>
-                        <Button>CHECKOUT NOW</Button>
+                        <Button disabled={cart.products.length > 0 ? false : true} onClick={sendPaymentRequest}>CHECKOUT NOW</Button>
                     </Summary>
                 </Bottom>
             </Wrapper>

@@ -44,7 +44,14 @@ const Option = styled.option``
 
 const ProductList = () => {
     const location = useLocation()
-    const cat = location.pathname.split("/")[2]
+    const getCategoryFromLocation = (location) => {
+        const category = location.pathname.split("/")[2]
+        if (category.includes("%20")) {
+            return category.split("%20").join(" ")
+        }
+        else { return category }
+    }
+    const cat = getCategoryFromLocation(location)
     const [filters, setFilters] = useState({})
     const [sort, setSort] = useState("newest")
 

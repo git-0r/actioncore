@@ -6,7 +6,7 @@ const {
     verifyTokenAndAdmin
 } = require("./verifyToken")
 
-
+// add new product to database
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
     const newProduct = new Product(req.body)
 
@@ -17,7 +17,7 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
         res.status(500).json(error)
     }
 })
-
+// update existing product
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         const updatedProduct = await Product.findByIdAndUpdate(
@@ -30,7 +30,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
         res.status(500).json(error)
     }
 })
-
+// delete product
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id)
@@ -39,7 +39,7 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
         res.status(500).json(error)
     }
 })
-
+// find product by id
 router.get("/find/:id", async (req, res) => {
     try {
         const product = await Product.findById(req.params.id)
@@ -48,7 +48,16 @@ router.get("/find/:id", async (req, res) => {
         res.status(500).json(error)
     }
 })
-
+// search products by title in database
+router.get("/findProducts/:text", async (req, res) => {
+    try {
+        const productsFound = await Product.find({ $text: { $search: `${req.params.text}` } })
+        res.status(200).json(productsFound)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+// find products according on filters
 router.get("/", async (req, res) => {
     const qNew = req.query.new
     const qCategory = req.query.category
