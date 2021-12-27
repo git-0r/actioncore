@@ -177,6 +177,7 @@ const Cart = () => {
 
     const sendPaymentRequest = async () => {
         // const checkoutUrl = await axios.post("http://localhost:3001/api/checkout/payment", { ...cart, userId })
+        console.log("sending payment request...")
         const checkoutUrl = await userRequest.post("checkout/payment", { ...cart, userId })
         console.log(checkoutUrl.data)
 
