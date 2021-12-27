@@ -2,8 +2,8 @@ import axios from "axios"
 import { store } from "../redux/store"
 import { updateCartFromDB } from "./cartRedux"
 
-// const BASE_URL = "https://actioncore.herokuapp.com/api"
-const BASE_URL = "http://localhost:3001/api"
+const BASE_URL = "https://actioncore.herokuapp.com/api"
+// const BASE_URL = "http://localhost:3001/api"
 
 
 const middleWare = (store) => (next) => (action) => {
