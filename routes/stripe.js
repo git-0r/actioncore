@@ -23,8 +23,8 @@ router.post("/payment", async (req, res) => {
             mode: "payment",
             // success_url: "http://localhost:3000/PaymentSuccess",
             // cancel_url: "http://localhost:3000/PaymentFail"
-            success_url: "http://actioncore.herokuapp.com/PaymentSuccess",
-            cancel_url: "http://actioncore.herokuapp.com/PaymentFail"
+            success_url: "https://actioncore.herokuapp.com/PaymentSuccess",
+            cancel_url: "https://actioncore.herokuapp.com/PaymentFail"
         }
     )
     const newOrder = new Order({
