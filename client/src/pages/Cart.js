@@ -160,7 +160,7 @@ const Button = styled.button`
 
 const Cart = () => {
     const cart = useSelector(state => state.cart)
-    const userId = useSelector(state => state.user.currentUser._id)
+    const userId = useSelector(state => state.user.currentUser?._id)
     const dispatch = useDispatch()
 
     const handleQuantity = (operation, product) => {
