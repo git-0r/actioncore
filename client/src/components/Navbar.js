@@ -264,8 +264,9 @@ const Navbar = () => {
                         {/* <Link to="/login"> */}
                         <PersonOutline style={{ color: "white" }}></PersonOutline>
                         <MenuItem style={{ zIndex: "4" }}>
-                            {!user && <Link to="/login"><MenuItems>Login</MenuItems></Link>}
-                            {!user && <Link to="/register"><MenuItems>Register</MenuItems></Link>}
+                            {!user && <Link to="/login" style={{ textDecoration: "none", color: "black" }}><MenuItems>Login</MenuItems></Link>}
+                            {user && <Link to="/orders" style={{ textDecoration: "none", color: "black" }}><MenuItems>Orders</MenuItems></Link>}
+                            {!user && <Link to="/register" style={{ textDecoration: "none", color: "black" }}><MenuItems>Register</MenuItems></Link>}
                             {user && <MenuItems onClick={logout}>Log Out</MenuItems>}
                         </MenuItem>
                         {/* </Link> */}

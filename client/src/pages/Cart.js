@@ -6,7 +6,7 @@ import { Add, Remove } from "@material-ui/icons"
 import { mobile } from "../responsive"
 import { useDispatch, useSelector } from "react-redux"
 import { addProduct, removeProduct } from "../redux/cartRedux"
-import axios from "axios"
+import { userRequest } from "../requestMethods"
 
 const Container = styled.div``
 
@@ -176,7 +176,8 @@ const Cart = () => {
     }
 
     const sendPaymentRequest = async () => {
-        const checkoutUrl = await axios.post("http://localhost:3001/api/checkout/payment", { ...cart, userId })
+        // const checkoutUrl = await axios.post("http://localhost:3001/api/checkout/payment", { ...cart, userId })
+        const checkoutUrl = await userRequest.post("checkout/payment", { ...cart, userId })
         console.log(checkoutUrl.data)
 
         window.location.href = checkoutUrl.data

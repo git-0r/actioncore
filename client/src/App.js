@@ -14,12 +14,15 @@ import {
 import { useSelector } from "react-redux";
 import SearchResults from "./components/SearchResults";
 import PaymentFail from "./pages/PaymentFail";
+import Orders from "./pages/Orders";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser)
   return (
     <div>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/products/:category" element={<ProductList />} />
@@ -30,6 +33,7 @@ function App() {
           <Route path="/searchProducts/:searchText" element={<SearchResults />} />
           <Route path="/paymentSuccess" element={<PaymentSuccess />} />
           <Route path="/paymentFail" element={<PaymentFail />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
       </Router>
     </div>

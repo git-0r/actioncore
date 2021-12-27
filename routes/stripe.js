@@ -27,12 +27,7 @@ router.post("/payment", async (req, res) => {
     )
     const newOrder = new Order({
         userId: req.body.userId,
-        products: products.map(product => {
-            return {
-                productId: product._id,
-                quantity: product.quantity
-            }
-        }),
+        products,
         amount: req.body.total
     })
 
