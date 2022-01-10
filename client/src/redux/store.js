@@ -1,6 +1,5 @@
-import { configureStore, combineReducers, applyMiddleware } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import cartReducer from "../redux/cartRedux"
-import { someMiddleWare } from "../pages/Home";
 import userReducer from "./userRedux"
 import {
     persistStore,
@@ -14,6 +13,7 @@ import {
 } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import middleWare from "./middleware";
+import statusRedux from "./statusRedux";
 
 const persistConfig = {
     key: "root",
@@ -21,8 +21,7 @@ const persistConfig = {
     storage,
 }
 
-// const rootReducer = undefined
-const rootReducer = combineReducers({ user: userReducer, cart: cartReducer })
+const rootReducer = combineReducers({ user: userReducer, status: statusRedux, cart: cartReducer })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
@@ -32,7 +31,6 @@ export const store = configureStore({
             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
         }
     }).concat(middleWare),
-    // applyMiddleware(someMiddleWare)
 
 })
 

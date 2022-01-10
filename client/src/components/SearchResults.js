@@ -36,16 +36,6 @@ const SearchResults = () => {
                 {products.map(item => (
                     <Product item={item} key={item._id} />))}
             </Wrapper>
-            {/* <Wrapper>
-                {cat ?
-                    filteredProducts.map(item => (
-                        <Product item={item} key={item._id} />
-                    ))
-                    : products
-                        // .slice(0, 3)
-                        .map((item) => <Product item={item} key={item._id} />)
-                }
-            </Wrapper> */}
             <Newsletter />
             <Footer />
         </Container>

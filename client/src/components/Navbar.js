@@ -8,19 +8,15 @@ import { useState } from "react"
 import Navigation from "./Navigation"
 import { logOut } from "../redux/userRedux"
 import { clearCart } from "../redux/cartRedux"
-import { publicRequest } from "../requestMethods"
-// ${mobile({ height: "fit-content" })}
 
 
 const Container = styled.div`
     height: 60px;
-    // display:flex;
-    // flex-direction: column;
-    // z-index: 3;
-    background:black;
+    // background:black;
+    background: #1E1C1C;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 `
 const Wrapper = styled.div`
-    // padding: 10px 20px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -38,15 +34,11 @@ const SearchContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    // border: 0.5px solid #FF3535;
-    // z-index: 2;
     background: #202020;
     box-sizing: border-box;
     padding: 20px;
     position: relative;
-    // height: 30px;
     z-index: 3;
-
 `
 const Input = styled.input`
     width: 80%;
@@ -55,7 +47,6 @@ const Input = styled.input`
     padding-left: 8vw;
     background: #202020;
     color: white;
-
 `
 const SearchIcon = styled.div`
     position: absolute;
@@ -67,8 +58,6 @@ const Center = styled.div`
     display:flex;
     flex: 7;
     justify-content:space-between;
-    // text-align: center;
-    // display: none;
     ${mobile({
     display: "none"
 })}
@@ -81,7 +70,6 @@ const Logo = styled.h1`
     font-size: 14px;
     letter-spacing: 2px;
     color:white;
-    // text-decoration:none;
 `
 
 const Right = styled.div`
@@ -106,23 +94,17 @@ const MenuOption = styled.div`
     &:hover > ul {
         display: block;
     }
-    // &:first-of-type{
-    //     display: none;
-    //     ${mobile({ display: "flex" })}
-    // }
 `
 
 const MenuItem = styled.ul`
     color: #191919;
     background-color: #F5F5F5;
-    // border: 1px solid black;
     padding: 10px;
     position: absolute;
     text-align: left;
     top: 80%;
     display:none;
     z-index: 2;
-    // display:flex;
 `
 const MenuItems = styled.li`
     list-style: none;
@@ -134,13 +116,6 @@ const MenuItems = styled.li`
     &:hover{
         text-decoration: underline;
     }
-`
-
-const LoginButton = styled.span`
-    background-color: #FF3535;
-    color: #191919;
-    padding: 5px 20px;
-    border-radius: 4px;
 `
 
 const NavigationMenu = styled.div`
@@ -191,8 +166,6 @@ const Navbar = () => {
                     </Link>
                 </Left>
                 <Center>
-                    {/* <Language>EN</Language> */}
-
                     <MenuOption>PRODUCTS
                         <MenuItem>
                             <MenuItems>Laptops</MenuItems>
@@ -214,8 +187,6 @@ const Navbar = () => {
                             <MenuItems>Storage</MenuItems>
                             <MenuItems>Cooling</MenuItems>
                         </MenuItem>
-                        {/* <MenuItems>Phones</MenuItems>
-                        <MenuItems>Desktops</MenuItems> */}
                     </MenuOption>
                     {/* <MenuOption>INNOVATION
                         <MenuItem>
@@ -261,7 +232,6 @@ const Navbar = () => {
                         <SearchOutlined></SearchOutlined>
                     </MenuOption>
                     <MenuOption>
-                        {/* <Link to="/login"> */}
                         <PersonOutline style={{ color: "white" }}></PersonOutline>
                         <MenuItem style={{ zIndex: "4" }}>
                             {!user && <Link to="/login" style={{ textDecoration: "none", color: "black" }}><MenuItems>Login</MenuItems></Link>}
@@ -269,7 +239,6 @@ const Navbar = () => {
                             {!user && <Link to="/register" style={{ textDecoration: "none", color: "black" }}><MenuItems>Register</MenuItems></Link>}
                             {user && <MenuItems onClick={logout}>Log Out</MenuItems>}
                         </MenuItem>
-                        {/* </Link> */}
                     </MenuOption>
                     <MenuOption>
                         <Link to="/cart">
@@ -278,22 +247,6 @@ const Navbar = () => {
                             </Badge>
                         </Link>
                     </MenuOption>
-                    {/* <MenuOption>
-                        {navigation ? <Close onClick={() => setNavigation(!navigation)}></Close> : <Menu onClick={() => setNavigation(!navigation)}></Menu>}
-                    </MenuOption> */}
-                    {/* <MenuItem>
-                        <Link to="/login" style={{ textDecoration: "none" }}>
-                            <LoginButton>Log in</LoginButton>
-                        </Link>
-                    </MenuItem>
-                    <MenuItem>More</MenuItem>
-                    <Link to="/cart">
-                        <MenuItem>
-                            <Badge badgeContent={quantity} color="error">
-                                <ShoppingCartOutlined />
-                            </Badge>
-                        </MenuItem>
-                    </Link> */}
                 </Right>
                 <NavigationMenu>
                     {navigation && <Navigation />}

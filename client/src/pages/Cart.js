@@ -1,14 +1,14 @@
 import styled from "styled-components"
 import Navbar from "../components/Navbar"
-// import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
 import { Add, Remove } from "@material-ui/icons"
 import { mobile } from "../responsive"
 import { useDispatch, useSelector } from "react-redux"
-import { addProduct, addProductFailure, addProductStart, addProductSuccess, removeProduct, removeProductFailure, removeProductStart, removeProductSuccess } from "../redux/cartRedux"
+import { addProductFailure, addProductStart, addProductSuccess, removeProductFailure, removeProductStart, removeProductSuccess, updateCartFromDB } from "../redux/cartRedux"
 import { userRequest } from "../requestMethods"
 import { handleAddProduct, handleRemoveProduct } from "../cartMiddleware"
-import { saveCartToDB } from "../redux/apiCalls"
+import { getCartFromDb, saveCartToDB } from "../redux/apiCalls"
+import { useEffect } from "react"
 
 const Container = styled.div``
 
@@ -122,12 +122,6 @@ const ProductPrice = styled.div`
     ${mobile({ marginBottom: "20px" })}
 `
 
-const Hr = styled.hr`
-    background-color: #eee;
-    border: none;
-    height: 1px;
-`
-
 const Summary = styled.div`
     flex: 1;
     border: 0.5px solid lightgray;
@@ -163,14 +157,15 @@ const Button = styled.button`
 const Cart = () => {
     const user = useSelector(state => state.user.currentUser)
     const cart = useSelector(state => state.cart)
-    const userId = useSelector(state => state.user.currentUser?._id)
+    const userId = user?._id
     const dispatch = useDispatch()
 
     const handleQuantity = async (operation, product) => {
         if (operation === "add") {
-            dispatch(addProductStart())
+            // dispatch(addProductStart())
 
-            const updatedCart = handleAddProduct({ ...product })
+            const updatedCart = await handleAddProduct({ ...product, quantity: 1 }, userId)
+            // const updatedCart = handleAddProduct({ ...product, quantity: 1 })
             if (user) {
                 try {
                     await saveCartToDB(user._id, updatedCart)
@@ -178,7 +173,7 @@ const Cart = () => {
                         addProductSuccess(updatedCart)
                     )
                 } catch (error) {
-                    dispatch(addProductFailure())
+                    // dispatch(addProductFailure())
                 }
             } else {
                 dispatch(
@@ -187,9 +182,9 @@ const Cart = () => {
             }
         } else if (operation === "remove") {
 
-            dispatch(removeProductStart())
-
-            const updatedCart = handleRemoveProduct({ ...product, quantity: 1 })
+            // dispatch(removeProductStart())
+            const updatedCart = await handleRemoveProduct({ ...product, quantity: 1 }, userId)
+            // const updatedCart = handleRemoveProduct({ ...product, quantity: 1 })
             if (user) {
                 try {
                     await saveCartToDB(user._id, updatedCart)
@@ -197,7 +192,7 @@ const Cart = () => {
                         removeProductSuccess(updatedCart)
                     )
                 } catch (error) {
-                    dispatch(removeProductFailure())
+                    // dispatch(removeProductFailure())
                 }
             } else {
                 dispatch(
@@ -206,6 +201,17 @@ const Cart = () => {
             }
         }
     }
+
+    useEffect(() => {
+        if (user) {
+            async function refreshCart() {
+                const cart = await getCartFromDb(userId)
+
+                dispatch(updateCartFromDB(cart))
+            }
+            refreshCart()
+        }
+    }, [])
 
     const sendPaymentRequest = async () => {
         // const checkoutUrl = await axios.post("http://localhost:3001/api/checkout/payment", { ...cart, userId })
@@ -251,27 +257,6 @@ const Cart = () => {
                                 </PriceDetail>
                             </Product>
                         ))}
-
-                        {/* <Hr /> */}
-                        {/* <Product>
-                            <ProductDetail>
-                                <Image src="https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-                                <Details>
-                                    <ProductName><b>Product: </b>Super T-Shirt</ProductName>
-                                    <ProductId><b>ID: </b>654545</ProductId>
-                                    <ProductColor color="lightgreen" />
-                                    <ProductSize><b>Size:</b> M</ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>1</ProductAmount>
-                                    <Remove />
-                                </ProductAmountContainer>
-                                <ProductPrice>$ 50</ProductPrice>
-                            </PriceDetail>
-                        </Product> */}
                     </Info>
                     <Summary>
                         <SummaryTitle>ORDER SUMMARY</SummaryTitle>

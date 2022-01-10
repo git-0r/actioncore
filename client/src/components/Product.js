@@ -6,17 +6,6 @@ import { mobile } from "../responsive"
 
 const Info = styled.div`
     width: 20vw;
-    // height: 100%;
-    // position: absolute;
-    // top: 0;
-    // bottom: 0;
-    // background-color: rgba(0,0,0,0.2);
-    // z-index: 3;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // transition: all 0.5s ease;
-    // cursor: pointer;
     ${mobile({ width: "100%" })}
 `
 const Icons = styled.div`
@@ -44,19 +33,9 @@ const Container = styled.div`
     ${mobile({ flexWrap: "wrap", width: "80vw", justifyContent: "center", padding: "10px" })}
 `
 
-const Circle = styled.div`
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: white;
-    position: absolute;
-    ${mobile({ width: "250px", height: "250px" })}
-`
 const Image = styled.img`
     height: 100px;
     width: 100px;
-    // object-fit: contain;
-    // z-index: 2;
     align-self:center;
 `
 
@@ -78,17 +57,14 @@ const Icon = styled.div`
     }
 `
 const ItemDetails = styled.p`
-    // word-break: break-all;
 `
 const ItemDesc = styled.p`
     color:gray;
 `
 
-
 const Product = ({ item }) => {
     return (
         <Container>
-            {/* <Circle /> */}
             <Image src={item.img} />
             <Info>
                 <ItemDetails>{item.title.substring(0, 50)}...</ItemDetails>

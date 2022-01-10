@@ -1,10 +1,8 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-// import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import { mobile } from "../responsive"
 import { register } from "../redux/apiCalls"
-// import { userRequest } from "../requestMethods"
 
 const Container = styled.div`
     width: 100vw;
@@ -63,17 +61,6 @@ const Buttons = styled.div`
     width:100%;
 `
 
-const Logo = styled.h1`
-    margin: 0;
-    padding: 5px;
-    border-bottom: 3px solid #FF3535;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 70px;
-    letter-spacing: 2px;
-    color:white;
-    ${mobile({ fontSize: "20px" })}
-`
-
 const Register = () => {
 
     const [name, setName] = useState("")
@@ -84,21 +71,14 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState("")
     console.log(name, lastName, username, email, password, confirmPassword)
     const dispatch = useDispatch()
-    // const { isFetching, error } = useSelector((state) => state.user)
 
     const handleRegistration = async (e) => {
         e.preventDefault()
-        // console.log(e)
-
-        // login(dispatch, { username, password })
         register(dispatch, { name, lastName, username, email, password, })
-
-        // await userRequest.post(`/carts`, { userId: user._id, products: [] })
     }
 
     return (
         <Container>
-            {/* <Logo>ACTION<br />CORE</Logo> */}
             <Wrapper>
                 <Title>CREATE AN ACCOUNT</Title>
                 <Form onSubmit={handleRegistration}>
@@ -111,10 +91,8 @@ const Register = () => {
                     <Agreement>
                         By creating an account, I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b>
                     </Agreement>
-                    {/* <Link to="/" style={{ width: "100%" }}> */}
                     <Buttons>
                         <Button>CANCEL</Button>
-                        {/* </Link> */}
                         <Button>CREATE</Button>
                     </Buttons>
 

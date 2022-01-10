@@ -1,5 +1,4 @@
 import Navbar from "../components/Navbar";
-// import Announcement from "../components/Announcement"
 import Slider from "../components/Slider"
 import Categories from "../components/Categories";
 import Products from "../components/Products";
@@ -9,7 +8,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
     background-color: #191919;
-    // background-color: #00AD7C;
     color: white
 `
 

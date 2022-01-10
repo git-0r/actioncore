@@ -1,18 +1,13 @@
-// import axios from "axios"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { login } from "../redux/apiCalls"
-// import { userRequest } from "../requestMethods"
 import { mobile } from "../responsive"
 
 const Container = styled.div`
     width: 100vw;
     height: 100vh;
-    // background: url("https://i.ibb.co/8jcm5X4/black-friday-elements-assortment-23-2149074076.jpg") no-repeat;
-    // background: url(https://res.cloudinary.com/clouduser/image/upload/v1639998702/ActionCore/4571248_lh07lt.jpg) no-repeat;
-    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -51,8 +46,6 @@ const Button = styled.button`
     width: 40%;
     border: none;
     padding: 15px 20px;
-    // background-color: teal;
-    // background-color: #FF3535;
     background: transparent;
     border: 1px solid #FF3535;
     color: #FF3535;
@@ -73,27 +66,6 @@ const FormLink = styled.a`
 `
 const Error = styled.span`
     color: red;
-`
-
-const Text = styled.p`
-    // background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%) ;
-    background-image: linear-gradient(60deg, #E21143, #FFB03A);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-size: 350%;
-    font-weight: 900;
-    width:50vw;
-    box-shadow: -5px -5px rgba(255,53,53,0.4),
-                -10px -10px rgba(255,53,53,0.3),
-                -15px -15px rgba(255,53,53,0.2),
-                -20px -20px rgba(255,53,53,0.1),
-                -25px -25px rgba(255,53,53,0.05);
-    text-align:center;
-    border-right: 1px solid rgba(255,53,53,0.5);
-    border-bottom: 1px solid rgba(255,53,53,0.5);
-    border-radius: 5px;
-    ${mobile({ width: "90vw", fontSize: "150%" })}
 `
 
 const FormLinks = styled.div`
@@ -117,7 +89,7 @@ const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
-    const { isFetching, error } = useSelector((state) => state.user)
+    const { isFetching, error } = useSelector((state) => state.status)
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -128,8 +100,6 @@ const Login = () => {
     return (
         <Container>
             <Logo>ACTION<br />CORE</Logo>
-            {/* <Text>Play Has No Age</Text> */}
-            {/* <Text>Play Has No Age <br />Play Has No Limits</Text> */}
             <Wrapper>
                 <Title>SIGN IN</Title>
                 <Form>
@@ -144,7 +114,6 @@ const Login = () => {
                     <FormLink>Forgotten password?</FormLink>
                     <FormLinks>
                         <Link to="/register" style={{ color: "white" }}>Create New Account
-                            {/* <FormLink>Create New Account</FormLink> */}
                         </Link>
                     </FormLinks>
                 </Form>

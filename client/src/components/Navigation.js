@@ -1,10 +1,8 @@
 import { ArrowDropDown } from "@material-ui/icons"
 import { useState } from "react"
 import styled, { keyframes } from "styled-components"
-// import { mobile } from "../responsive"
 
 const Wrapper = styled.div`
-    // z-index: 1;
 `
 
 const MenuOption = styled.div`
@@ -12,7 +10,6 @@ const MenuOption = styled.div`
     letter-spacing: 1px;
     cursor:pointer;
     margin: 20px;
-    // text-align: center;
 
     &:hover{
         color: #FF3535;
@@ -26,9 +23,7 @@ const animateMenu = keyframes`
     to {
         transform: translateX(0px);
         opacity: 1;
-    }
-
-    
+    }    
 `
 
 const MenuItem = styled.ul`
@@ -62,7 +57,6 @@ const Navigation = () => {
     const [menuItem, setMenuItem] = useState("")
     return (
         <Wrapper>
-
             <MenuOption>
                 <MenuTitle onClick={() => setMenuItem(menuItem === "products" ? "" : "products")}>
                     <Title>PRODUCTS</Title>

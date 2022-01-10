@@ -1,20 +1,22 @@
+import { getCartFromDb } from "./redux/apiCalls"
 import { store } from "./redux/store"
 
-export const handleAddProduct = (newProduct) => {
+export const handleAddProduct = async (newProduct, userId) => {
 
     const state = store.getState()
-    const productsInCart = state.cart.products
-    const quantity = state.cart.quantity
-    const total = state.cart.total
+    const prevCart = userId ? await getCartFromDb(userId) : state.cart
+    const prevProducts = prevCart.products
+    const prevQuantity = prevCart.quantity
+    const prevTotal = prevCart.total
     const updatedCart = {
         products: [],
         quantity: 0,
         total: 0
     }
-    updatedCart.total = total + (newProduct.price * newProduct.quantity)
-    const alreadyInCart = productsInCart.find(product => product._id === newProduct._id)
+    updatedCart.total = prevTotal + (newProduct.price * newProduct.quantity)
+    const alreadyInCart = prevProducts.find(product => product._id === newProduct._id)
     if (alreadyInCart) {
-        productsInCart.forEach(product => {
+        prevProducts.forEach(product => {
             if (product._id === newProduct._id) {
                 newProduct.quantity += product.quantity
                 updatedCart.products.push(newProduct)
@@ -22,28 +24,29 @@ export const handleAddProduct = (newProduct) => {
                 updatedCart.products.push(product)
             }
         });
-        updatedCart.quantity = quantity
+        updatedCart.quantity = prevQuantity
     } else {
-        updatedCart.products = [...productsInCart, newProduct]
-        updatedCart.quantity = quantity + 1
+        updatedCart.products = [...prevProducts, newProduct]
+        updatedCart.quantity = prevQuantity + 1
     }
     return updatedCart
 }
 
 
-export const handleRemoveProduct = (productToBeRemoved) => {
+export const handleRemoveProduct = async (productToBeRemoved, userId) => {
     const state = store.getState()
-    const productsInCart = state.cart.products
-    const quantity = state.cart.quantity
-    const total = state.cart.total
+    const prevCart = userId ? await getCartFromDb(userId) : state.cart
+    const prevProducts = prevCart.products
+    const prevQuantity = prevCart.quantity
+    const prevTotal = prevCart.total
     const updatedCart = {
         products: [],
         quantity: 0,
         total: 0
     }
-    const productInCart = productsInCart.find(product => product._id === productToBeRemoved._id)
+    const productInCart = prevProducts.find(product => product._id === productToBeRemoved._id)
     if (productInCart.quantity > 1) {
-        productsInCart.forEach(product => {
+        prevProducts.forEach(product => {
             if (product._id === productToBeRemoved._id) {
                 productToBeRemoved.quantity = product.quantity - productToBeRemoved.quantity
                 updatedCart.products.push(productToBeRemoved)
@@ -51,12 +54,12 @@ export const handleRemoveProduct = (productToBeRemoved) => {
                 updatedCart.products.push(product)
             }
         })
-        updatedCart.quantity = quantity
+        updatedCart.quantity = prevQuantity
     } else {
-        updatedCart.products = productsInCart.filter(product => product._id !== productToBeRemoved._id)
-        updatedCart.quantity = quantity - 1
+        updatedCart.products = prevProducts.filter(product => product._id !== productToBeRemoved._id)
+        updatedCart.quantity = prevQuantity - 1
     }
-    updatedCart.total = total - productToBeRemoved.price
+    updatedCart.total = prevTotal - productToBeRemoved.price
 
     return updatedCart
 }

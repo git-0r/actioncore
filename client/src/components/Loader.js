@@ -2,17 +2,19 @@ import React from "react";
 import styled, { keyframes } from "styled-components"
 
 const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
+  0% {
+    transform: scale(1)
   }
-
-  to {
-    transform: rotate(360deg);
+  50%{
+    transform: scale(1.3)
+  }
+  100% {
+    transform: scale(1)
   }
 `
 
 const Container = styled.div`
-  background-color: black;
+  background: linear-gradient(to right, rgba(253,45,0,0.3), rgba(223,0,124,0.3));
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -35,11 +37,8 @@ const Wrapper = styled.div`
   position:relative;
 `
 const Spinner = styled.div`
-  animation: ${rotate} 2s linear infinite;
+  animation: ${rotate} 3s ease infinite;
   box-sizing:border-box;
-  border: 10px solid gray;
-  border-top: 10px solid red;
-  border-bottom: 10px solid red;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -47,23 +46,27 @@ const Spinner = styled.div`
   top:0;
   left:0;
   color: white;
+  background: rgba(255,255,255,0.8);
 `
 const Text = styled.p`
-  animation:none
+  color: #1D1B26;
+  font-weight: 700;
+  font-size: 1.5rem;
+  z-index:1
 `
 const Loader = () => {
 
-    return (
-        <Container>
-            <Wrapper>
-                <Text>
-                    working on it...
-                </Text>
-                <Spinner>
-                </Spinner>
-            </Wrapper>
-        </Container>
-    )
+  return (
+    <Container>
+      <Wrapper>
+        <Text>
+          working on it...
+        </Text>
+        <Spinner>
+        </Spinner>
+      </Wrapper>
+    </Container>
+  )
 }
 
 export default Loader

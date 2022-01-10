@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import Navbar from "../components/Navbar"
-// import Announcement from "../components/Announcement"
 import Newsletter from "../components/Newsletter"
 import Footer from "../components/Footer"
 import { Add, Remove } from "@material-ui/icons"
@@ -8,14 +7,11 @@ import { mobile } from "../responsive"
 import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
-import { addProduct, addProductFailure, addProductStart, addProductSuccess, updateCartFromDB } from "../redux/cartRedux"
+import { addProductFailure, addProductStart, addProductSuccess, updateCartFromDB } from "../redux/cartRedux"
 import { useDispatch, useSelector } from "react-redux"
 import { getCartFromDb, saveCartToDB } from "../redux/apiCalls"
 import { handleAddProduct } from "../cartMiddleware"
 import Loader from "../components/Loader"
-// import axios from "axios"
-// import {}
-
 
 const Container = styled.div``
 
@@ -28,34 +24,41 @@ const Wrapper = styled.div`
 
 const ImgContainer = styled.div`
     flex: 1;
+    ${mobile({ borderWidth: "3px" })}
 `
 
 const Image = styled.img`
     width: 100%;
-    height: 90vh;
+    height: 70vh;
     object-fit: contain;
     ${mobile({ height: "40vh" })}
 `
 
 const InfoContainer = styled.div`
     flex: 1;
-    padding: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0 30px;
+
     ${mobile({ padding: "10px" })}
 `
 
 const Title = styled.p`
-    font-size: 24px;
+    font-size: 1.4rem;
     font-weight: 200;
-
 `
 
 const Desc = styled.p`
     margin: 20px 0px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.9);
 `
 
 const Price = styled.span`
     font-weight: 100;
-    font-size: 40px;
+    font-size: 1.3rem;
+    text-decoration: underline #FD2D00;
 `
 const FilterContainer = styled.div`
     width: 50%;
@@ -71,7 +74,7 @@ const Filter = styled.div`
 `
 
 const FilterTitle = styled.span`
-    font-size: 20px;
+    font-size: 0.9rem;
     font-weight: 200;
 `
 
@@ -83,13 +86,6 @@ const FilterColor = styled.div`
     margin: 0px 5px;
     cursor: pointer;
 `
-
-const FilterSize = styled.select`
-    margin-left: 10px;
-    padding: 5px;
-`
-
-const FilterSizeOption = styled.option``
 
 const AddContainer = styled.div`
     width: 100%;
@@ -119,13 +115,18 @@ const Amount = styled.span`
 
 const Button = styled.button`
     padding: 15px;
-    border: 2px solid teal;
-    background-color: white;
+    background-color: #1E1C1C;
     cursor: pointer;
     font-weight: 500;
+    color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-image: linear-gradient(#FD2D00,#DF007C) 1;
+    transition: all 0.2s;
 
     &:hover{
-        background-color: #f8f4f4;
+        transform: scale(1.05);
+        box-shadow: 2px 2px 2px #FD2D00;
     }
 `
 
@@ -135,10 +136,9 @@ const Product = () => {
     const id = location.pathname.split("/")[2]
     const [product, setProduct] = useState()
     const [quantity, setQuantity] = useState(1)
-    // const [color, setColor] = useState("")
-    // const [size, setSize] = useState("")
-    const cart = useSelector(state => state.cart)
+    // const cart = useSelector(state => state.cart)
     const user = useSelector(state => state.user.currentUser)
+    const { isFetching } = useSelector(state => state.status)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -160,13 +160,8 @@ const Product = () => {
     }
     const handleClick = async () => {
 
-        dispatch(addProductStart())
-        if (user && cart.quantity === 0) {
-            const cart = getCartFromDb(user._id)
-            updateCartFromDB(cart)
-        }
-
-        const updatedCart = handleAddProduct({ ...product, quantity })
+        // handleAddProduct from cartMiddleware
+        const updatedCart = await handleAddProduct({ ...product, quantity }, user?._id)
         if (user) {
             try {
                 await saveCartToDB(user._id, updatedCart)
@@ -174,7 +169,7 @@ const Product = () => {
                     addProductSuccess(updatedCart)
                 )
             } catch (error) {
-                dispatch(addProductFailure())
+                // dispatch(addProductFailure())
             }
         } else {
             dispatch(
@@ -185,7 +180,7 @@ const Product = () => {
 
     return (
         <Container>
-            {cart.isFetching && <Loader />}
+            {isFetching && <Loader />}
             <Navbar />
             {/* <Announcement /> */}
             <Wrapper>
@@ -193,7 +188,7 @@ const Product = () => {
                     <Image src={product?.img} />
                 </ImgContainer>
                 <InfoContainer>
-                    <Title>{product?.title}</Title>
+                    <Title>{product?.title.slice(0, 99)}...</Title>
                     <Desc>{product?.desc}</Desc>
                     <Price>&#8377; {product?.price}</Price>
                     <FilterContainer>

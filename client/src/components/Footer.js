@@ -22,22 +22,12 @@ const Left = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    // align-items:center;
     justify-content: space-evenly;
     padding: 20px;
-`
-const Logo = styled.p`
-    font-size: 16px;
-    letter-spacing: 2px;
-    font-weight: 900;
-    text-align:center;
-    border-bottom: 5px solid #FF3535;
-    font-family: "Ubuntu", sans-serif;
 `
 
 const Desc = styled.p`
     margin: 20px 10px 30px 10px;
-    // letter-spacing:1px;
 `
 
 const SocialContainer = styled.div`
@@ -55,7 +45,6 @@ const SocialIcon = styled.div`
     align-items: center;
     justify-content: center;
     margin-right: 20px;
-    
 `
 
 const Center = styled.div`
@@ -68,7 +57,6 @@ const Title = styled.h3`
     padding-bottom:5px;
     color: #FF3535;
     letter-spacing:5px;
-    // text-decoration: underline;
     border-bottom: 1px solid #FF3535;
     font-family: 'Luckiest Guy', cursive;
 `
@@ -97,7 +85,7 @@ const ContactItem = styled.div`
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    `
+`
 
 const Payment = styled.img`
 width: 50%
@@ -109,7 +97,6 @@ const Footer = () => {
             <Container>
                 <Left>
                     <Title>Action Core</Title>
-                    {/* <Logo>ACTION <br />CORE</Logo> */}
                     <Desc>Action Core is dedicated to 100% customer delight ensuring that everything from placing your order to delivering it right to your doorstep is smooth and hassle-free. Follow us on</Desc>
                     <SocialContainer>
                         <SocialIcon color="3B5999">

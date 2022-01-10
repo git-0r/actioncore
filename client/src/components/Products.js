@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-// import { popularProducts } from "../data"
 import Product from "./Product"
 import axios from "axios"
 import { mobile } from "../responsive"
@@ -10,10 +9,7 @@ const Container = styled.div`
 `
 const Wrapper = styled.div`
     display: flex;
-    // flex-direction: column;
     flex-wrap: wrap;
-    // justify-content:space-around;
-    // align-items: ;
     justify-content: space-evenly;
 `
 const Title = styled.p`

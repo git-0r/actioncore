@@ -60,31 +60,6 @@ const Image = styled.img`
     ${mobile({ objectFit: "fill", height: "100%" })}
 `
 
-const InfoContainer = styled.div`
-    flex:1;
-    padding: 50px;
-    position: absolute;
-    font-family: 'Source Code Pro', monospace;  
-    ${mobile({ display: "none" })} 
-`
-const Title = styled.h1`
-    font-size: 70px;
-
-`
-const Desc = styled.p`
-    margin: 50px 0px;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 3px;
-`
-const Button = styled.button`
-    padding: 10px;
-    font-size: 20px;
-    background-color: transparent;
-    cursor: pointer;
-`
-
-
 const Slider = () => {
 
     const [slideIndex, setSlideIndex] = useState(0)
@@ -99,10 +74,6 @@ const Slider = () => {
         }
 
     }
-    // setTimeout(() => {
-    //     console.log(slideIndex)
-    //     setSlideIndex(slideIndex === 3 ? 0 : slideIndex + 1)
-    // }, 3000)
 
     return (
         <Container>
