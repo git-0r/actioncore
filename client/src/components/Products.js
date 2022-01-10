@@ -32,12 +32,13 @@ const Products = ({ cat, filters, sort }) => {
         const getProducts = async () => {
             try {
                 const res = await axios.get(
-                    // cat
-                    //     ? `http://localhost:3001/api/products?category=${cat}`
-                    //     : "http://localhost:3001/api/products"
-                    cat
-                        ? `/api/products?category=${cat}`
-                        : "/api/products"
+                    process.env.NODE_ENV !== "production" ?
+                        (cat
+                            ? `http://localhost:3001/api/products?category=${cat}`
+                            : "http://localhost:3001/api/products") :
+                        (cat
+                            ? `/api/products?category=${cat}`
+                            : "/api/products")
                 )
                 setProducts(res.data)
             } catch (error) { }

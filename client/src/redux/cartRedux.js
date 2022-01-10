@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
-import { userRequest } from "../requestMethods"
 
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
         products: [],
         quantity: 0,
-        total: 0
+        total: 0,
+        isFetching: true,
+        error: false,
     },
     reducers: {
         updateCartFromDB: (state, action) => {
@@ -15,15 +15,31 @@ const cartSlice = createSlice({
             state.quantity = action.payload.quantity;
             state.total = action.payload.total
         },
-        addProduct: (state, action) => {
-            state.products = action.payload.products;
-            state.quantity = action.payload.quantity;
-            state.total = action.payload.total
+        addProductStart: (state) => {
+            state.isFetching = true
         },
-        removeProduct: (state, action) => {
+        addProductSuccess: (state, action) => {
+            state.products = action.payload.products;
+            state.quantity = action.payload.quantity;
+            state.total = action.payload.total;
+            state.isFetching = false
+        },
+        addProductFailure: (state) => {
+            state.isFetching = false;
+            state.error = true
+        },
+        removeProductStart: (state) => {
+            state.isFetching = true;
+        },
+        removeProductSuccess: (state, action) => {
             state.products = action.payload.products;
             state.quantity = action.payload.quantity;
             state.total = action.payload.total
+            state.isFetching = false;
+        },
+        removeProductFailure: (state) => {
+            state.isFetching = false;
+            state.error = true
         },
         clearCart: (state, action) => {
             state.quantity = 0;
@@ -33,5 +49,14 @@ const cartSlice = createSlice({
     }
 })
 
-export const { addProduct, removeProduct, clearCart, updateCartFromDB } = cartSlice.actions
+export const {
+    addProductStart,
+    addProductSuccess,
+    addProductFailure,
+    removeProductStart,
+    removeProductSuccess,
+    removeProductFailure,
+    clearCart,
+    updateCartFromDB
+} = cartSlice.actions
 export default cartSlice.reducer 

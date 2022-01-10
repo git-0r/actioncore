@@ -5,8 +5,10 @@ import Footer from "../components/Footer"
 import { Add, Remove } from "@material-ui/icons"
 import { mobile } from "../responsive"
 import { useDispatch, useSelector } from "react-redux"
-import { addProduct, removeProduct } from "../redux/cartRedux"
+import { addProduct, addProductFailure, addProductStart, addProductSuccess, removeProduct, removeProductFailure, removeProductStart, removeProductSuccess } from "../redux/cartRedux"
 import { userRequest } from "../requestMethods"
+import { handleAddProduct, handleRemoveProduct } from "../cartMiddleware"
+import { saveCartToDB } from "../redux/apiCalls"
 
 const Container = styled.div``
 
@@ -159,27 +161,55 @@ const Button = styled.button`
 `
 
 const Cart = () => {
+    const user = useSelector(state => state.user.currentUser)
     const cart = useSelector(state => state.cart)
     const userId = useSelector(state => state.user.currentUser?._id)
     const dispatch = useDispatch()
 
-    const handleQuantity = (operation, product) => {
+    const handleQuantity = async (operation, product) => {
         if (operation === "add") {
-            dispatch(
-                addProduct({ ...product, quantity: 1 })
-            )
+            dispatch(addProductStart())
+
+            const updatedCart = handleAddProduct({ ...product })
+            if (user) {
+                try {
+                    await saveCartToDB(user._id, updatedCart)
+                    dispatch(
+                        addProductSuccess(updatedCart)
+                    )
+                } catch (error) {
+                    dispatch(addProductFailure())
+                }
+            } else {
+                dispatch(
+                    addProductSuccess(updatedCart)
+                )
+            }
         } else if (operation === "remove") {
-            dispatch(
-                removeProduct({ ...product, quantity: 1 })
-            )
+
+            dispatch(removeProductStart())
+
+            const updatedCart = handleRemoveProduct({ ...product, quantity: 1 })
+            if (user) {
+                try {
+                    await saveCartToDB(user._id, updatedCart)
+                    dispatch(
+                        removeProductSuccess(updatedCart)
+                    )
+                } catch (error) {
+                    dispatch(removeProductFailure())
+                }
+            } else {
+                dispatch(
+                    removeProductSuccess(updatedCart)
+                )
+            }
         }
     }
 
     const sendPaymentRequest = async () => {
         // const checkoutUrl = await axios.post("http://localhost:3001/api/checkout/payment", { ...cart, userId })
-        console.log("sending payment request...")
         const checkoutUrl = await userRequest.post("checkout/payment", { ...cart, userId })
-        console.log(checkoutUrl.data)
 
         window.location.href = checkoutUrl.data
     }

@@ -24,7 +24,6 @@ const SearchResults = () => {
         async function searchProducts() {
             const res = await publicRequest.get(`products/findProducts/${searchText}`)
             setProducts(res.data)
-            console.log(products, res.data)
         }
         searchProducts()
     }, [searchText])

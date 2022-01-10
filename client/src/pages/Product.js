@@ -8,9 +8,13 @@ import { mobile } from "../responsive"
 import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
-import { addProduct } from "../redux/cartRedux"
+import { addProduct, addProductFailure, addProductStart, addProductSuccess, updateCartFromDB } from "../redux/cartRedux"
 import { useDispatch, useSelector } from "react-redux"
+import { getCartFromDb, saveCartToDB } from "../redux/apiCalls"
+import { handleAddProduct } from "../cartMiddleware"
+import Loader from "../components/Loader"
 // import axios from "axios"
+// import {}
 
 
 const Container = styled.div``
@@ -134,7 +138,7 @@ const Product = () => {
     // const [color, setColor] = useState("")
     // const [size, setSize] = useState("")
     const cart = useSelector(state => state.cart)
-    // const user = useSelector(state => state.user.currentUser)
+    const user = useSelector(state => state.user.currentUser)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -155,16 +159,33 @@ const Product = () => {
         }
     }
     const handleClick = async () => {
-        // dispatch(
-        //     clearCart()
-        // )
-        dispatch(
-            addProduct({ ...product, quantity })
-        )
+
+        dispatch(addProductStart())
+        if (user && cart.quantity === 0) {
+            const cart = getCartFromDb(user._id)
+            updateCartFromDB(cart)
+        }
+
+        const updatedCart = handleAddProduct({ ...product, quantity })
+        if (user) {
+            try {
+                await saveCartToDB(user._id, updatedCart)
+                dispatch(
+                    addProductSuccess(updatedCart)
+                )
+            } catch (error) {
+                dispatch(addProductFailure())
+            }
+        } else {
+            dispatch(
+                addProductSuccess(updatedCart)
+            )
+        }
     }
 
     return (
         <Container>
+            {cart.isFetching && <Loader />}
             <Navbar />
             {/* <Announcement /> */}
             <Wrapper>

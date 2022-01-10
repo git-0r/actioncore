@@ -6,7 +6,7 @@ import {
     registrationSuccess,
     registrationFailure,
 } from "./userRedux";
-import { publicRequest, registrationRequest } from "../requestMethods"
+import { cartToDb, publicRequest, registrationRequest, userRequest } from "../requestMethods"
 
 
 export const login = async (dispatch, user) => {
@@ -29,4 +29,25 @@ export const register = async (dispatch, user) => {
     } catch (error) {
         dispatch(registrationFailure())
     }
+}
+// TESTing
+export const saveCartToDB = async (userId, updatedCart) => {
+    await cartToDb.put(`/carts/${userId}`,
+        { _id: userId, ...updatedCart },
+        {
+            headers: {
+                token: `Bearer ${localStorage.getItem("token")}`
+            }
+        }
+    )
+}
+
+export const getCartFromDb = async (userId) => {
+    const cart = await userRequest(`/carts/find/${userId}`, {
+        headers: {
+            token: `Bearer ${localStorage.getItem("token")}`
+        }
+    })
+
+    return cart.data
 }

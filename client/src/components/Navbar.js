@@ -65,7 +65,7 @@ const SearchIcon = styled.div`
 
 const Center = styled.div`
     display:flex;
-    flex: 8;
+    flex: 7;
     justify-content:space-between;
     // text-align: center;
     // display: none;
@@ -87,7 +87,7 @@ const Logo = styled.h1`
 const Right = styled.div`
     display: flex;
     justify-content: space-evenly;
-    flex: 2;
+    flex: 3;
     ${mobile({ flex: 2 })}
 `
 
@@ -217,12 +217,12 @@ const Navbar = () => {
                         {/* <MenuItems>Phones</MenuItems>
                         <MenuItems>Desktops</MenuItems> */}
                     </MenuOption>
-                    <MenuOption>INNOVATION
+                    {/* <MenuOption>INNOVATION
                         <MenuItem>
                             <MenuItems>Aura</MenuItems>
                             <MenuItems>Intelligent Cooling</MenuItems>
                         </MenuItem>
-                    </MenuOption>
+                    </MenuOption> */}
                     <MenuOption>DOWNLOAD
                         <MenuItem>
                             <MenuItems>Wallpaper</MenuItems>

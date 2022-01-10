@@ -92,12 +92,17 @@ const Slider = () => {
     const handleClick = (direction) => {
         if (direction === "left") {
             setSlideIndex(slideIndex === 0 ? 3 : slideIndex - 1)
+            console.log("set to", slideIndex)
         }
         else {
             setSlideIndex(slideIndex === 3 ? 0 : slideIndex + 1)
         }
 
     }
+    // setTimeout(() => {
+    //     console.log(slideIndex)
+    //     setSlideIndex(slideIndex === 3 ? 0 : slideIndex + 1)
+    // }, 3000)
 
     return (
         <Container>
