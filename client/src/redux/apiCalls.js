@@ -48,6 +48,5 @@ export const getCartFromDb = async (userId) => {
             token: `Bearer ${localStorage.getItem("token")}`
         }
     })
-
     return cart.data
 }

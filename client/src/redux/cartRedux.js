@@ -44,7 +44,9 @@ const cartSlice = createSlice({
         clearCart: (state, action) => {
             state.quantity = 0;
             state.products = [];
-            state.total = 0
+            state.total = 0;
+            state.isFetching = false;
+            state.error = false
         }
     }
 })

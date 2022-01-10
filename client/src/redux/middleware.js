@@ -23,8 +23,8 @@ const middleWare = (store) => (next) => (action) => {
 
 async function getCartOnLogin(userId) {
 
-    const cart = getCartFromDb(userId)
-    cart && store.dispatch(updateCartFromDB(cart))
+    const cart = await getCartFromDb(userId)
+    cart.quantity !== 0 && store.dispatch(updateCartFromDB(cart))
 }
 
 export default middleWare
