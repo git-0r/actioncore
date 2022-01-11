@@ -7,11 +7,14 @@ import { mobile } from "../responsive"
 import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
-import { addProductFailure, addProductStart, addProductSuccess, updateCartFromDB } from "../redux/cartRedux"
+import { addProductSuccess } from "../redux/cartRedux"
 import { useDispatch, useSelector } from "react-redux"
-import { getCartFromDb, saveCartToDB } from "../redux/apiCalls"
+// import { saveCartToDB } from "../redux/apiCalls"
 import { handleAddProduct } from "../cartMiddleware"
 import Loader from "../components/Loader"
+import Notification from "../components/Notification"
+import { saveCartToDB } from "../redux/apiCalls"
+import { operationComplete, operationStart } from "../redux/statusRedux"
 
 const Container = styled.div``
 
@@ -140,6 +143,7 @@ const Product = () => {
     const user = useSelector(state => state.user.currentUser)
     const { isFetching } = useSelector(state => state.status)
     const dispatch = useDispatch()
+    const [notification, setNotification] = useState(null)
 
     useEffect(() => {
         const getProduct = async () => {
@@ -160,27 +164,37 @@ const Product = () => {
     }
     const handleClick = async () => {
 
-        // handleAddProduct from cartMiddleware
-        const updatedCart = await handleAddProduct({ ...product, quantity }, user?._id)
-        if (user) {
-            try {
+        try {
+            dispatch(operationStart())
+            const updatedCart = await handleAddProduct({ ...product, quantity }, user?._id)
+            if (user) {
                 await saveCartToDB(user._id, updatedCart)
                 dispatch(
                     addProductSuccess(updatedCart)
                 )
-            } catch (error) {
-                // dispatch(addProductFailure())
+            } else {
+                dispatch(
+                    addProductSuccess(updatedCart)
+                )
             }
-        } else {
-            dispatch(
-                addProductSuccess(updatedCart)
-            )
+            setNotification(<Notification reason="success" message="added to cart" />)
+            setTimeout(() => {
+                setNotification(null)
+            }, 3000)
+            dispatch(operationComplete())
+        } catch (error) {
+            dispatch(operationComplete())
+            setNotification(<Notification reason="failure" message="Error !" />)
+            setTimeout(() => {
+                setNotification(null)
+            }, 3000)
         }
     }
 
     return (
         <Container>
             {isFetching && <Loader />}
+            {notification}
             <Navbar />
             {/* <Announcement /> */}
             <Wrapper>

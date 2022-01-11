@@ -4,11 +4,15 @@ import Footer from "../components/Footer"
 import { Add, Remove } from "@material-ui/icons"
 import { mobile } from "../responsive"
 import { useDispatch, useSelector } from "react-redux"
-import { addProductFailure, addProductStart, addProductSuccess, removeProductFailure, removeProductStart, removeProductSuccess, updateCartFromDB } from "../redux/cartRedux"
+import { addProductSuccess, removeProductSuccess, updateCartFromDB } from "../redux/cartRedux"
 import { userRequest } from "../requestMethods"
 import { handleAddProduct, handleRemoveProduct } from "../cartMiddleware"
 import { getCartFromDb, saveCartToDB } from "../redux/apiCalls"
 import { useEffect } from "react"
+import { useState } from "react"
+import Notification from "../components/Notification"
+import Loader from "../components/Loader"
+import { operationComplete, operationStart } from "../redux/statusRedux"
 
 const Container = styled.div``
 
@@ -159,58 +163,91 @@ const Cart = () => {
     const cart = useSelector(state => state.cart)
     const userId = user?._id
     const dispatch = useDispatch()
+    const [notification, setNotification] = useState(null)
+    const { isFetching } = useSelector(state => state.status)
 
     const handleQuantity = async (operation, product) => {
-        if (operation === "add") {
-            // dispatch(addProductStart())
+        try {
+            if (operation === "add") {
+                // dispatch(addProductStart())
+                dispatch(operationStart())
 
-            const updatedCart = await handleAddProduct({ ...product, quantity: 1 }, userId)
-            // const updatedCart = handleAddProduct({ ...product, quantity: 1 })
-            if (user) {
-                try {
+                const updatedCart = await handleAddProduct({ ...product, quantity: 1 }, userId)
+                // const updatedCart = handleAddProduct({ ...product, quantity: 1 })
+                if (user) {
+                    // try {
                     await saveCartToDB(user._id, updatedCart)
                     dispatch(
                         addProductSuccess(updatedCart)
                     )
-                } catch (error) {
+                    // }
+                    //  catch (error) {
                     // dispatch(addProductFailure())
+                    // }
+                } else {
+                    dispatch(
+                        addProductSuccess(updatedCart)
+                    )
                 }
-            } else {
-                dispatch(
-                    addProductSuccess(updatedCart)
-                )
-            }
-        } else if (operation === "remove") {
+                dispatch(operationComplete())
+            } else if (operation === "remove") {
 
-            // dispatch(removeProductStart())
-            const updatedCart = await handleRemoveProduct({ ...product, quantity: 1 }, userId)
-            // const updatedCart = handleRemoveProduct({ ...product, quantity: 1 })
-            if (user) {
-                try {
+                // dispatch(removeProductStart())
+                dispatch(operationStart())
+                const updatedCart = await handleRemoveProduct({ ...product, quantity: 1 }, userId)
+                // const updatedCart = handleRemoveProduct({ ...product, quantity: 1 })
+                if (user) {
+                    // try {
                     await saveCartToDB(user._id, updatedCart)
                     dispatch(
                         removeProductSuccess(updatedCart)
                     )
-                } catch (error) {
+                    // } 
+                    // catch (error) {
                     // dispatch(removeProductFailure())
+                    // }
+                } else {
+                    dispatch(
+                        removeProductSuccess(updatedCart)
+                    )
                 }
-            } else {
-                dispatch(
-                    removeProductSuccess(updatedCart)
-                )
+                dispatch(operationComplete())
             }
+            setNotification(<Notification reason="success" message="cart updated" />)
+            setTimeout(() => {
+                setNotification(null)
+            }, 1000)
+        } catch (error) {
+            dispatch(operationComplete())
+            setNotification(<Notification reason="failure" message="Error !" />)
+            setTimeout(() => {
+                setNotification(null)
+            }, 1000)
         }
+
     }
 
     useEffect(() => {
-        if (user) {
-            async function refreshCart() {
-                const cart = await getCartFromDb(userId)
-
-                dispatch(updateCartFromDB(cart))
+        try {
+            if (user) {
+                async function refreshCart() {
+                    dispatch(operationStart())
+                    const cart = await getCartFromDb(userId)
+                    // console.log("cart", cart)
+                    dispatch(updateCartFromDB(cart))
+                    dispatch(operationComplete())
+                }
+                refreshCart()
             }
-            refreshCart()
+        } catch (error) {
+            // console.log("error caught", error)
+            dispatch(operationComplete())
+            setNotification(<Notification reason="failure" message="Error !" />)
+            setTimeout(() => {
+                setNotification(null)
+            }, 1000)
         }
+
     }, [])
 
     const sendPaymentRequest = async () => {
@@ -222,6 +259,8 @@ const Cart = () => {
 
     return (
         <Container>
+            {notification}
+            {isFetching && <Loader />}
             <Navbar />
             {/* <Announcement /> */}
             <Wrapper>

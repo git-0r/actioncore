@@ -13,7 +13,8 @@ export const userRequest = axios.create({
 })
 
 export const registrationRequest = axios.create({
-    baseURl: BASE_URL
+    // baseURl: BASE_URL,
+    baseURL: "http://localhost:3001/api/"
 })
 
 export const cartToDb = axios.create({
