@@ -12,7 +12,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    ${mobile({ height: "50vh" })}
+    ${mobile({ height: "auto" })}
     padding-bottom:50px;
 `
 const Title = styled.h1`

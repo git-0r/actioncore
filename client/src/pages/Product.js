@@ -21,7 +21,8 @@ const Container = styled.div``
 const Wrapper = styled.div`
     padding: 50px;
     display: flex;
-    background:#202020;
+    background:${props => props.theme.bgPrimary};
+    color: ${props => props.theme.fontColorPrimary};
     ${mobile({ padding: "10px", flexDirection: "column" })}
 `
 
@@ -55,7 +56,7 @@ const Title = styled.p`
 const Desc = styled.p`
     margin: 20px 0px;
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.9);
+    // color: rgba(255,255,255,0.9);
 `
 
 const Price = styled.span`

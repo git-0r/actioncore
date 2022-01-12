@@ -8,12 +8,18 @@ const Container = styled.div`
     padding: 20px;
     background: ${props => props.theme.bgPrimary};
     color: ${props => props.theme.fontColorSecondary};
+    
+    ${mobile({ padding: "20px 0" })}
 
 `
 const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+
+     & div:nth-of-type(2n) div {
+        order: -1
+    }
 `
 const Title = styled.p`
     text-align:center;

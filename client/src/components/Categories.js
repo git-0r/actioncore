@@ -24,7 +24,7 @@ const Title = styled.p`
     -webkit-background-clip: text;
     color: transparent;
 
-    ${mobile({ fontSize: "2rem", margin: "0", padding: "50px 0" })}
+    ${mobile({ fontSize: "3.3rem", margin: "0", padding: "50px 0" })}
 `
 const Products = styled.div`
     display:flex;
