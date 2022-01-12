@@ -8,13 +8,17 @@ import { useState } from "react"
 import Navigation from "./Navigation"
 import { logOut } from "../redux/userRedux"
 import { clearCart } from "../redux/cartRedux"
+import { changeTheme } from "../redux/themeRedux"
 
 
 const Container = styled.div`
     height: 60px;
+    box-sizing:border-box;
     // background:black;
-    background: #1E1C1C;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    // background: #1E1C1C;
+    background: ${props => props.theme.bgPrimary};
+    // color: ${props => props.theme.fontColorPrimary};
+    // border-bottom: 5px solid rgba(255,255,255,0.1);
 `
 const Wrapper = styled.div`
     display: flex;
@@ -28,6 +32,7 @@ const Left = styled.div`
     justify-content: center;
     flex: 2;
     text-align:center;
+
     ${mobile({ flex: 1, })}
 `
 const SearchContainer = styled.div`
@@ -46,7 +51,7 @@ const Input = styled.input`
     padding: 10px;
     padding-left: 8vw;
     background: #202020;
-    color: white;
+    // color: white;
 `
 const SearchIcon = styled.div`
     position: absolute;
@@ -58,6 +63,7 @@ const Center = styled.div`
     display:flex;
     flex: 7;
     justify-content:space-between;
+
     ${mobile({
     display: "none"
 })}
@@ -69,24 +75,26 @@ const Logo = styled.h1`
     font-family: 'Ubuntu', sans-serif;
     font-size: 14px;
     letter-spacing: 2px;
-    color:white;
+    color:${props => props.theme.fontColorPrimary};
 `
 
 const Right = styled.div`
     display: flex;
     justify-content: space-evenly;
+
     flex: 3;
     ${mobile({ flex: 2 })}
 `
 
 const MenuOption = styled.div`
-    font-size: 12px;
+    font-size: 0.8rem;
     position: relative;
     height: 60px;
     display:flex;
     align-items:center;
     letter-spacing: 1px;
     cursor:pointer;
+    color: ${props => props.theme.fontColorPrimary};
 
     &:hover{
         color: #FF3535;
@@ -97,8 +105,10 @@ const MenuOption = styled.div`
 `
 
 const MenuItem = styled.ul`
-    color: #191919;
-    background-color: #F5F5F5;
+    // color: #191919;
+    // background-color: #F5F5F5;
+    background: ${props => props.theme.bgPrimary};
+
     padding: 10px;
     position: absolute;
     text-align: left;
@@ -108,10 +118,12 @@ const MenuItem = styled.ul`
 `
 const MenuItems = styled.li`
     list-style: none;
-    font-size: 16px;
+    // font-size: 16px;
     padding: 5px;
     white-space: nowrap;
     cursor:pointer;
+    color: ${props => props.theme.fontColorPrimary};
+
 
     &:hover{
         text-decoration: underline;
@@ -123,8 +135,11 @@ const NavigationMenu = styled.div`
     box-sizing: border-box;
     top: 60px;
     width: 100%;
-    background: #191919;
-    border-top: 1px solid rgba(32, 32, 32,1);
+    // background: #191919;
+    background: ${props => props.theme.bgPrimary};
+    color: ${props => props.theme.fontColorPrimary};
+
+    // border-top: 1px solid rgba(32, 32, 32,1);
     display: none;
     z-index: 3;
     ${mobile({ display: "block" })}
@@ -135,6 +150,8 @@ const NavigationToggle = styled.div`
     align-items:center;
     justify-content:center;
     cursor:pointer;
+    color: ${props => props.theme.fontColorPrimary};
+
     ${mobile({ display: "flex" })}
 `
 const Navbar = () => {
@@ -143,6 +160,7 @@ const Navbar = () => {
     const [searchBar, setSearchBar] = useState(false)
     const [searchText, setSearchText] = useState("")
     const user = useSelector(state => state.user.currentUser)
+    const activeTheme = useSelector(state => state.theme.active)
     const dispatch = useDispatch()
 
     const logout = () => {
@@ -152,6 +170,10 @@ const Navbar = () => {
         dispatch(
             clearCart()
         )
+    }
+
+    const switchTheme = () => {
+        dispatch(changeTheme())
     }
 
     return (
@@ -232,21 +254,22 @@ const Navbar = () => {
                         <SearchOutlined></SearchOutlined>
                     </MenuOption>
                     <MenuOption>
-                        <PersonOutline style={{ color: "white" }}></PersonOutline>
+                        <PersonOutline style={{}}></PersonOutline>
                         <MenuItem style={{ zIndex: "4" }}>
-                            {!user && <Link to="/login" style={{ textDecoration: "none", color: "black" }}><MenuItems>Login</MenuItems></Link>}
-                            {user && <Link to="/orders" style={{ textDecoration: "none", color: "black" }}><MenuItems>Orders</MenuItems></Link>}
-                            {!user && <Link to="/register" style={{ textDecoration: "none", color: "black" }}><MenuItems>Register</MenuItems></Link>}
+                            {!user && <Link to="/login" style={{ textDecoration: "none" }}><MenuItems>Login</MenuItems></Link>}
+                            {user && <Link to="/orders" style={{ textDecoration: "none" }}><MenuItems>Orders</MenuItems></Link>}
+                            {!user && <Link to="/register" style={{ textDecoration: "none" }}><MenuItems>Register</MenuItems></Link>}
                             {user && <MenuItems onClick={logout}>Log Out</MenuItems>}
+                            <MenuItems onClick={switchTheme}>{activeTheme === "light" ? "Dark theme" : "Light theme"}</MenuItems>
                         </MenuItem>
                     </MenuOption>
-                    <MenuOption>
-                        <Link to="/cart">
+                    <Link to="/cart">
+                        <MenuOption>
                             <Badge badgeContent={quantity} color="error">
-                                <LocalMallOutlined style={{ color: "white" }}></LocalMallOutlined>
+                                <LocalMallOutlined style={{}}></LocalMallOutlined>
                             </Badge>
-                        </Link>
-                    </MenuOption>
+                        </MenuOption>
+                    </Link>
                 </Right>
                 <NavigationMenu>
                     {navigation && <Navigation />}

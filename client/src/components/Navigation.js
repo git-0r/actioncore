@@ -6,7 +6,7 @@ const Wrapper = styled.div`
 `
 
 const MenuOption = styled.div`
-    font-size: 16px;
+    // font-size: 16px;
     letter-spacing: 1px;
     cursor:pointer;
     margin: 20px;
@@ -27,8 +27,8 @@ const animateMenu = keyframes`
 `
 
 const MenuItem = styled.ul`
-    color: #191919;
-    background-color: #F5F5F5;
+    // color: #191919;
+    // background-color: #F5F5F5;
     padding: 10px 20px;
     margin: 5px;
     text-align: center;
@@ -37,7 +37,7 @@ const MenuItem = styled.ul`
 `
 const MenuItems = styled.li`
     list-style: none;
-    font-size: 14px;
+    // font-size: 14px;
     white-space: nowrap;
     cursor:pointer;
     margin: 10px 0;

@@ -35,19 +35,22 @@ export const categories = [
         id: 1,
         img: "https://res.cloudinary.com/clouduser/image/upload/v1639825413/ActionCore/bravo-15-a4ddr-2-550x550-removebg-preview_zuafc6.png",
         title: "Laptops",
-        cat: "laptop"
+        cat: "laptop",
+        desc: "Take your creative projects to a new level with GeForce RTX™ 30 Series laptops. Delivering AI-acceleration in top creative apps. Backed by the NVIDIA Studio platform of dedicated drivers and exclusive tools. And built to perform in record time. Whether you’re rendering complex 3D scenes, editing 8K video, or livestreaming with the best encoding and image quality, GeForce RTX™ laptops give you the performance to create your best."
     },
     {
         id: 2,
         img: "https://res.cloudinary.com/clouduser/image/upload/v1639825741/ActionCore/b450-gaming-pro-carbon-max-wifi-3-550x550w-removebg-preview_tj1dfu.png",
         title: "Motherboards",
-        cat: "motherboard"
+        cat: "motherboard",
+        desc: "The AMD X570 chipset delivers outstanding overclocking capabilities for the latest AMD AM4 socket for 3rd and 2nd Gen AMD Ryzen™ /2nd and 1st Gen AMD Ryzen™ with Radeon™ Vega Graphics Processors. It is optimized for multiple GPU configurations, including NVIDIA SLI® and AMD CrossFireX™. It also supports x16 PCI Express® 4.0/3.0 lanes and provides 10Gb/s USB 3.2 Gen 2 ports and 6 Gb/s SATA ports for faster data retrieval.​"
     },
     {
         id: 3,
         img: "https://res.cloudinary.com/clouduser/image/upload/v1639826544/ActionCore/2-600x600_1_-removebg-preview_zyimz1.png",
         title: "Graphic Cards",
-        cat: "graphic card"
+        cat: "graphic card",
+        desc: "From top to bottom, the GeForce RTX™️ 3060 has been designed to push performance boundaries. A fresh design and more metal surrounds a grouping of Axial-tech fans that leverage a new rotation scheme. Below the blades, a larger, more impressive heatsink is ready for the most demanding thermal loads. The PCB has some new tricks up its sleeves, and even the backplate has received some performance-boosting changes. For gamers who want to get the most out of the NVIDIA Ampere architecture, delivers in every way."
     },
     {
         id: 4,

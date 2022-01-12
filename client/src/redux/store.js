@@ -14,6 +14,7 @@ import {
 import storage from "redux-persist/lib/storage"
 import middleWare from "./middleware";
 import statusRedux from "./statusRedux";
+import themeRedux from "./themeRedux";
 
 const persistConfig = {
     key: "root",
@@ -21,7 +22,13 @@ const persistConfig = {
     storage,
 }
 
-const rootReducer = combineReducers({ user: userReducer, status: statusRedux, cart: cartReducer })
+const rootReducer = combineReducers(
+    {
+        user: userReducer,
+        status: statusRedux,
+        cart: cartReducer,
+        theme: themeRedux
+    })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({

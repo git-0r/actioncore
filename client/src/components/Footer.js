@@ -4,17 +4,20 @@ import { mobile } from "../responsive"
 
 
 const Wrapper = styled.div`
+    color: ${props => props.theme.fontColorPrimary};
     display:flex;
     flex-direction: column;
 `
 const Copyright = styled.p`
-    background-color: #202020;
-    margin-bottom: 0;
+    // background-color: #202020;
+    background: ${props => props.theme.bgPrimary};
+    margin: 0;
     text-align:center;
     padding: 20px
 `
 
 const Container = styled.div`
+    background: ${props => props.theme.bgSecondary};
     display: flex;
     ${mobile({ flexDirection: "column" })}
 `
@@ -78,7 +81,6 @@ const ListItem = styled.li`
 const Right = styled.div`
     flex: 1;
     padding: 20px;
-    ${mobile({ backgrounColor: "#fff8f8" })}
 `
 
 const ContactItem = styled.div`
@@ -138,7 +140,6 @@ const Footer = () => {
                     <ContactItem><EmailOutlined style={{ marginRight: "10px" }} /> contact@actioncore.com</ContactItem>
                     <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
                 </Right>
-
             </Container>
             <Copyright>Copyright &copy; 2022, Action Core Pvt. Ltd. All Rights Reserved.</Copyright>
         </Wrapper>

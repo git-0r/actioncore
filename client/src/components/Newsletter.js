@@ -5,13 +5,15 @@ import Banner from "../components/Banner"
 
 const Container = styled.div`
     height: 100vh;
-    background-color: #191919;
+    // background-color: #191919;
+    background: ${props => props.theme.bgPrimary};
+    color: ${props => props.theme.fontColorSecondary};
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     ${mobile({ height: "50vh" })}
-    margin-bottom:50px;
+    padding-bottom:50px;
 `
 const Title = styled.h1`
     font-size: 70px;
@@ -24,6 +26,8 @@ const Desc = styled.div`
     font-size: 24px;
     font-weight: 300;
     margin-bottom: 60px;
+    color: ${props => props.theme.fontColorPrimary};
+
     ${mobile({ textAlign: "center", fontSize: "18px" })}
 `
 const InputContainer = styled.div`
@@ -39,6 +43,8 @@ const Input = styled.input`
     flex: 8;
     border: none;
     padding-left: 20px;
+    caret-color: #FF3535;
+    outline-color: #FF3535;
 `
 const Button = styled.button`
     flex: 2;

@@ -43,7 +43,7 @@ const Slide = styled.div`
     height: 100%;
     display:flex;
     align-items: center;
-    background-color: #${props => props.bg};
+    background-color: #${props => props.theme.bgPrimary};
     position: relative;
     ${mobile({ height: "auto" })}
 `
@@ -82,7 +82,7 @@ const Slider = () => {
             </Arrow>
             <Wrapper slideIndex={slideIndex}>
                 {sliderItems.map(item => (
-                    <Slide bg={item.bg} key={item.id}>
+                    <Slide key={item.id}>
                         <ImgContainer>
                             <Image src={item.img} />
                         </ImgContainer>

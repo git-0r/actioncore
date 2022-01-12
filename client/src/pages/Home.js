@@ -7,8 +7,11 @@ import Footer from "../components/Footer";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    background-color: #191919;
-    color: white
+    // background-color: #191919;
+    // background: ${props => props.theme.bgSecondary};
+    max-width: 1400px;
+    // color: white
+    margin: 0 auto;
 `
 
 const Home = () => {

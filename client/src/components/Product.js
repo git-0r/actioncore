@@ -60,6 +60,7 @@ const ItemDetails = styled.p`
 `
 const ItemDesc = styled.p`
     color:gray;
+    // color: ${props => props.theme.fontColorPrimary};
 `
 
 const Product = ({ item }) => {

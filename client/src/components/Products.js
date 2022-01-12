@@ -6,6 +6,9 @@ import { mobile } from "../responsive"
 
 const Container = styled.div`
     padding: 20px;
+    background: ${props => props.theme.bgPrimary};
+    color: ${props => props.theme.fontColorSecondary};
+
 `
 const Wrapper = styled.div`
     display: flex;
@@ -16,7 +19,11 @@ const Title = styled.p`
     text-align:center;
     font-family: "Luckiest Guy", cursive;
     letter-spacing: 5px;
-    font-size:70px;
+    font-size: 4rem;
+    background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%) ;
+     background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     ${mobile({ fontSize: "40px" })}
 `
 
