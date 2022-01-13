@@ -7,7 +7,23 @@ import { mobile } from "../responsive"
 import { useLocation } from "react-router-dom"
 import { useState } from "react"
 
-const Container = styled.div``
+const Container = styled.div`
+
+    background: ${props => props.theme.bgSecondary};
+    color:${props => props.theme.fontColorPrimary};
+
+    & .products {
+        ${mobile({
+    flexDirection: "row",
+    height: "auto"
+})
+    }   
+    }
+
+    // flexDirection: "column",
+    //     height: "350px",
+    //     overflowX: "auto",
+`
 
 const Title = styled.h1`
     margin: 20px;

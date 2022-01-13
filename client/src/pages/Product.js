@@ -19,9 +19,10 @@ import { operationComplete, operationStart } from "../redux/statusRedux"
 const Container = styled.div``
 
 const Wrapper = styled.div`
+    font-size: 1.6rem;
     padding: 50px;
     display: flex;
-    background:${props => props.theme.bgPrimary};
+    background:${props => props.theme.bgSecondary};
     color: ${props => props.theme.fontColorPrimary};
     ${mobile({ padding: "10px", flexDirection: "column" })}
 `
@@ -49,19 +50,19 @@ const InfoContainer = styled.div`
 `
 
 const Title = styled.p`
-    font-size: 1.4rem;
+    font-size: 2rem;
     font-weight: 200;
 `
 
 const Desc = styled.p`
     margin: 20px 0px;
-    font-size: 0.9rem;
+    // font-size: 1.6rem;
     // color: rgba(255,255,255,0.9);
 `
 
 const Price = styled.span`
     font-weight: 100;
-    font-size: 1.3rem;
+    font-size: 2rem;
     text-decoration: underline #FD2D00;
 `
 const FilterContainer = styled.div`
@@ -78,7 +79,7 @@ const Filter = styled.div`
 `
 
 const FilterTitle = styled.span`
-    font-size: 0.9rem;
+    // font-size: 1.6rem;
     font-weight: 200;
 `
 
@@ -226,9 +227,9 @@ const Product = () => {
                     </FilterContainer>
                     <AddContainer>
                         <AmountContainer >
-                            <Remove onClick={() => handleQuantity("dec")} />
+                            <Remove style={{ fontSize: "1.6rem" }} onClick={() => handleQuantity("dec")} />
                             <Amount>{quantity}</Amount>
-                            <Add onClick={() => handleQuantity("inc")} />
+                            <Add style={{ fontSize: "1.6rem" }} onClick={() => handleQuantity("inc")} />
                         </AmountContainer>
                         <Button onClick={handleClick}>ADD TO CART</Button>
                     </AddContainer>

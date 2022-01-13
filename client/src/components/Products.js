@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Product from "./Product"
 import axios from "axios"
 import { mobile } from "../responsive"
+import ProductInList from "./ProductInList"
 
 const Container = styled.div`
     padding: 20px;
@@ -100,12 +101,12 @@ const Products = ({ cat, filters, sort }) => {
     }, [sort])
 
     return (
-        <Container>
+        <Container >
             {!cat && <Title>Popular products</Title>}
-            <Wrapper>
+            <Wrapper className="products">
                 {cat ?
                     filteredProducts.map(item => (
-                        <Product item={item} key={item._id} />
+                        <ProductInList item={item} key={item._id} />
                     ))
                     : products
                         .slice(0, 8)

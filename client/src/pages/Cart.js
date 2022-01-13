@@ -17,6 +17,7 @@ import { operationComplete, operationStart } from "../redux/statusRedux"
 const Container = styled.div``
 
 const Wrapper = styled.div`
+    font-size: 1.6rem;
     padding: 20px;
     ${mobile({ padding: "10px" })}
 `
@@ -87,7 +88,7 @@ const Details = styled.div`
 const ProductName = styled.span``
 
 const ProductId = styled.span`
-    font-size: 12px;
+    // font-size: 12px;
     color:gray;
 `
 
@@ -115,13 +116,13 @@ const ProductAmountContainer = styled.div`
 `
 
 const ProductAmount = styled.div`
-    font-size: 24px;
+    font-size: 2.5rem;
     margin: 5px;
     ${mobile({ margin: "5px 15px" })}
 `
 
 const ProductPrice = styled.div`
-    font-size: 30px;
+    font-size: 3rem;
     font-weight: 200;
     ${mobile({ marginBottom: "20px" })}
 `
@@ -142,7 +143,7 @@ const SummaryItem = styled.div`
     display: flex;
     justify-content: space-between;
     font-weight: ${props => props.type === "total" && "500"};
-    font-size: ${props => props.type === "total" && "24px"};
+    font-size: ${props => props.type === "total" && "2.5rem"};
 `
 
 const SummaryItemText = styled.span``
@@ -266,12 +267,12 @@ const Cart = () => {
             <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>
-                    <TopButton>CONTINUE SHOPPING</TopButton>
+                    {/* <TopButton>CONTINUE SHOPPING</TopButton> */}
                     <TopTexts>
                         <TopText>Shopping Bag({cart?.products?.length})</TopText>
                         <TopText>Your Wishlist(0)</TopText>
                     </TopTexts>
-                    <TopButton type="filled">CHECKOUT NOW</TopButton>
+                    {/* <TopButton type="filled">CHECKOUT NOW</TopButton> */}
                 </Top>
                 <Bottom>
                     <Info>
