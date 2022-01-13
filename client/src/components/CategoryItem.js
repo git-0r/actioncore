@@ -60,7 +60,7 @@ const Image = styled.img`
 // `
 const Desc = styled.p`
     width: 40vw;
-    // font-size: 1.2rem;
+    font-size: 1.2rem;
     
 
     &::selection{
