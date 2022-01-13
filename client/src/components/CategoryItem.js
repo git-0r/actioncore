@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { mobile, mobileSm } from "../responsive"
+import { mobile } from "../responsive"
 import { Link } from "react-router-dom"
 import { SportsEsports } from "@material-ui/icons"
 
@@ -10,6 +10,7 @@ const Container = styled.div`
     align-items: center;
     box-sizing: border-box;
     transition: all 0.5s ease-out;
+    font-size: 1.6rem;
 
    &:nth-of-type(odd){
     border-width: 0 2px 0 0;
@@ -23,11 +24,10 @@ const Container = styled.div`
     border-image: linear-gradient(#FD2D00,#DF007C) 1;
    }
 
-   ${mobile({ width: "100vw", margin: "20px 0" })}
-   ${mobileSm({ flexDirection: "column" })}
+   ${mobile({ width: "100vw", margin: "20px 0", flexDirection: "column" })}
 `
 const Image = styled.img`
-    width: 25vw;
+    width: 20vw;
     max-width: 400px;
     display:block;
     transition: all 0.3s ease-out;
@@ -45,7 +45,7 @@ const Image = styled.img`
         box-shadow: 3px 3px 3px #FD2D00;
     }
 
-    ${mobileSm({ width: "70vw" })}
+    ${mobile({ width: "70vw" })}
 `
 // const Title = styled.p`
 //     text-align:center;
@@ -60,16 +60,14 @@ const Image = styled.img`
 // `
 const Desc = styled.p`
     width: 40vw;
-    font-size: 1.2rem;
+    // font-size: 1.2rem;
+    
 
     &::selection{
         background: #FF3535;
     }
 
-    ${mobile({})};
-    ${mobileSm({ width: "85%", order: "0 !important", margin: "50px 0" })}
-
-
+    ${mobile({ width: "85%", order: "0 !important", margin: "50px 0" })}
 `
 const Button = styled.button`
     display:block;
@@ -78,7 +76,7 @@ const Button = styled.button`
     border-style: solid;
     border-image: linear-gradient(#FD2D00,#DF007C) 1;
     transition: all 0.2s;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     background: #191919;
     color: white;
     padding: 10px 20px;

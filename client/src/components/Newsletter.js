@@ -4,9 +4,9 @@ import { mobile } from "../responsive"
 import Banner from "../components/Banner"
 
 const Container = styled.div`
-    height: 100vh;
+    // height: 100vh;
     // background-color: #191919;
-    background: ${props => props.theme.bgPrimary};
+    background: ${props => props.theme.bgSecondary};
     color: ${props => props.theme.fontColorSecondary};
     display: flex;
     align-items: center;
@@ -16,14 +16,20 @@ const Container = styled.div`
     padding-bottom:50px;
 `
 const Title = styled.h1`
-    font-size: 70px;
+    font-size: 8rem;
+    background-image: linear-gradient(135deg, rgb(214, 255, 127) 0%, rgb(0, 179, 204) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     margin: 30px;
-    font-family: 'Luckiest Guy', cursive;
-    letter-spacing:5px;
+    // font-family: 'Luckiest Guy', cursive;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    // letter-spacing:5px;
     ${mobile({ fontSize: "40px" })}
 `
 const Desc = styled.div`
-    font-size: 24px;
+    font-size: 2rem;
     font-weight: 300;
     margin-bottom: 60px;
     color: ${props => props.theme.fontColorPrimary};
@@ -32,7 +38,7 @@ const Desc = styled.div`
 `
 const InputContainer = styled.div`
     width: 50%;
-    height: 40px;
+    height: 5rem;
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -42,14 +48,16 @@ const InputContainer = styled.div`
 const Input = styled.input`
     flex: 8;
     border: none;
-    padding-left: 20px;
-    caret-color: #FF3535;
-    outline-color: #FF3535;
+    padding: 20px;
+    caret-color: rgb(0, 179, 204);
+    outline-color: rgb(0, 179, 204);
 `
 const Button = styled.button`
     flex: 2;
     border: none;
-    background-color: #FF3535;
+    // background-color: #FF3535;
+    background: linear-gradient(135deg, rgb(214, 255, 127) 0%, rgb(0, 179, 204) 100%);
+    // font-size: 5rem;
     color: white;
 `
 

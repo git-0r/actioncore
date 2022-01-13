@@ -13,12 +13,10 @@ import { changeTheme } from "../redux/themeRedux"
 
 const Container = styled.div`
     height: 60px;
-    box-sizing:border-box;
-    // background:black;
-    // background: #1E1C1C;
-    background: ${props => props.theme.bgPrimary};
-    // color: ${props => props.theme.fontColorPrimary};
-    // border-bottom: 5px solid rgba(255,255,255,0.1);
+    background: ${props => props.theme.bgSecondary};
+    font-size: 1.4rem;
+    // border-bottom: 1px solid rgba(255,69,69, 0.1);
+
 `
 const Wrapper = styled.div`
     display: flex;
@@ -51,7 +49,6 @@ const Input = styled.input`
     padding: 10px;
     padding-left: 8vw;
     background: #202020;
-    // color: white;
 `
 const SearchIcon = styled.div`
     position: absolute;
@@ -72,8 +69,8 @@ const Logo = styled.h1`
     margin: 0;
     padding: 5px;
     border-bottom: 5px solid #FF3535;
+    font-size: 1.2rem;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 14px;
     letter-spacing: 2px;
     color:${props => props.theme.fontColorPrimary};
 `
@@ -87,7 +84,6 @@ const Right = styled.div`
 `
 
 const MenuOption = styled.div`
-    font-size: 0.8rem;
     position: relative;
     height: 60px;
     display:flex;
@@ -96,33 +92,28 @@ const MenuOption = styled.div`
     cursor:pointer;
     color: ${props => props.theme.fontColorPrimary};
 
-    &:hover{
-        color: #FF3535;
-    }
+    
     &:hover > ul {
         display: block;
     }
 `
 
 const MenuItem = styled.ul`
-    // color: #191919;
-    // background-color: #F5F5F5;
-    background: ${props => props.theme.bgPrimary};
-
+    background: ${props => props.theme.bgSecondary};
+    border: 1px solid rgba(255,69,69, 0.5);
     padding: 10px;
     position: absolute;
     text-align: left;
     top: 80%;
     display:none;
+    color: ${props => props.theme.fontColorPrimary};
     z-index: 2;
 `
 const MenuItems = styled.li`
     list-style: none;
-    // font-size: 16px;
     padding: 5px;
     white-space: nowrap;
     cursor:pointer;
-    color: ${props => props.theme.fontColorPrimary};
 
 
     &:hover{
@@ -135,11 +126,9 @@ const NavigationMenu = styled.div`
     box-sizing: border-box;
     top: 60px;
     width: 100%;
-    // background: #191919;
-    background: ${props => props.theme.bgPrimary};
+    background: ${props => props.theme.bgSecondary};
     color: ${props => props.theme.fontColorPrimary};
 
-    // border-top: 1px solid rgba(32, 32, 32,1);
     display: none;
     z-index: 3;
     ${mobile({ display: "block" })}
@@ -180,7 +169,7 @@ const Navbar = () => {
         <Container>
             <Wrapper>
                 <NavigationToggle>
-                    {navigation ? <Close onClick={() => setNavigation(!navigation)}></Close> : <Menu onClick={() => setNavigation(!navigation)}></Menu>}
+                    {navigation ? <Close style={{ fontSize: "2rem" }} onClick={() => setNavigation(!navigation)}></Close> : <Menu style={{ fontSize: "2rem" }} onClick={() => setNavigation(!navigation)}></Menu>}
                 </NavigationToggle>
                 <Left>
                     <Link to="/" style={{ textDecoration: "none" }}>
@@ -251,10 +240,10 @@ const Navbar = () => {
                 </Center>
                 <Right>
                     <MenuOption onClick={() => setSearchBar(!searchBar)}>
-                        <SearchOutlined></SearchOutlined>
+                        <SearchOutlined style={{ fontSize: "2rem" }}></SearchOutlined>
                     </MenuOption>
                     <MenuOption>
-                        <PersonOutline style={{}}></PersonOutline>
+                        <PersonOutline style={{ fontSize: "2rem" }}></PersonOutline>
                         <MenuItem style={{ zIndex: "4" }}>
                             {!user && <Link to="/login" style={{ textDecoration: "none" }}><MenuItems>Login</MenuItems></Link>}
                             {user && <Link to="/orders" style={{ textDecoration: "none" }}><MenuItems>Orders</MenuItems></Link>}
@@ -266,7 +255,7 @@ const Navbar = () => {
                     <Link to="/cart">
                         <MenuOption>
                             <Badge badgeContent={quantity} color="error">
-                                <LocalMallOutlined style={{}}></LocalMallOutlined>
+                                <LocalMallOutlined style={{ fontSize: "2rem" }}></LocalMallOutlined>
                             </Badge>
                         </MenuOption>
                     </Link>

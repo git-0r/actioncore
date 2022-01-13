@@ -6,7 +6,7 @@ import { mobile } from "../responsive"
 
 const Container = styled.div`
     padding: 20px;
-    background: ${props => props.theme.bgPrimary};
+    background: ${props => props.theme.bgSecondary};
     color: ${props => props.theme.fontColorSecondary};
     
     ${mobile({ padding: "20px 0" })}
@@ -14,23 +14,42 @@ const Container = styled.div`
 `
 const Wrapper = styled.div`
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
+    // flex-wrap: nowrap;
+    // overflow-x: auto;
     justify-content: space-evenly;
 
-     & div:nth-of-type(2n) div {
-        order: -1
+    &::-webkit-scrollbar {
+    display: none;
     }
+
+     & div:nth-of-type(2n) div {
+        // order: -1
+    }
+
+    ${mobile(
+    {
+        // width: "2400px",
+        // flexWrap: "nowrap",
+        flexDirection: "column",
+        height: "350px",
+        overflowX: "auto",
+    }
+)}
 `
 const Title = styled.p`
-    text-align:center;
-    font-family: "Luckiest Guy", cursive;
-    letter-spacing: 5px;
-    font-size: 4rem;
+    // font-family: "Luckiest Guy", cursive;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    // letter-spacing: 5px;
+    font-size: 8rem;
+    text-align: center;
     background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%) ;
      background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    ${mobile({ fontSize: "40px" })}
+    ${mobile({ fontSize: "3rem" })}
 `
 
 const Products = ({ cat, filters, sort }) => {
@@ -89,7 +108,7 @@ const Products = ({ cat, filters, sort }) => {
                         <Product item={item} key={item._id} />
                     ))
                     : products
-                        .slice(0, 6)
+                        .slice(0, 8)
                         .map((item) => <Product item={item} key={item._id} />)
                 }
             </Wrapper>

@@ -6,7 +6,7 @@ import Banner from "../components/Banner"
 
 const Container = styled.div`
     // background-color: #202020;
-    background-color: ${props => props.theme.bgPrimary};
+    background-color: ${props => props.theme.bgSecondary};
     color: ${props => props.theme.fontColorSecondary};
     padding: 20px;
 
@@ -14,9 +14,11 @@ const Container = styled.div`
 `
 const Title = styled.p`
     text-align:center;
-    font-family: "Luckiest Guy", cursive;
-    letter-spacing: 5px;
-    font-size: 4rem;
+    // font-family: "Luckiest Guy", cursive;
+    font-family: 'Inter', sans-serif;
+    // letter-spacing: 5px;
+    font-size: 8rem;
+    font-weight: 900;
     // #FD2D00,#DF007C
     background-image: linear-gradient(135deg, #DF007C 0%, #FD2D00 100%) ;
     // background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%) ;
@@ -24,7 +26,7 @@ const Title = styled.p`
     -webkit-background-clip: text;
     color: transparent;
 
-    ${mobile({ fontSize: "3.3rem", margin: "0", padding: "50px 0" })}
+    ${mobile({ fontSize: "3rem", margin: "0", padding: "50px 0" })}
 `
 const Products = styled.div`
     display:flex;
@@ -42,7 +44,7 @@ const Products = styled.div`
 const Categories = () => {
     return (
         <Container>
-            <Title>EXPLORE OUR PRODUCTS </Title>
+            <Title>Explore our products </Title>
             <Products>
                 {categories
                     .slice(0, 3)

@@ -3,6 +3,7 @@ import { useState } from "react"
 import styled, { keyframes } from "styled-components"
 
 const Wrapper = styled.div`
+    height: 100vh;
 `
 
 const MenuOption = styled.div`
@@ -12,7 +13,7 @@ const MenuOption = styled.div`
     margin: 20px;
 
     &:hover{
-        color: #FF3535;
+        // color: #FF3535;
     }
 `
 const animateMenu = keyframes`
@@ -31,9 +32,10 @@ const MenuItem = styled.ul`
     // background-color: #F5F5F5;
     padding: 10px 20px;
     margin: 5px;
-    text-align: center;
-    border: 1px solid #FF3535;
-    animation: ${animateMenu} 0.5s ease;
+    // text-align: center;
+    // border: 1px solid #FF3535;
+    animation: ${animateMenu} 0.1s ease;
+    // transition: all 0.5s ease;
 `
 const MenuItems = styled.li`
     list-style: none;

@@ -6,6 +6,7 @@ import { mobile } from "../responsive"
 
 const Container = styled.div`
     height:80vh;
+    max-height: 500px;
     width: 100%;
     display: flex;
     position: relative;

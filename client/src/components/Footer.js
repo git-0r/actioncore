@@ -7,6 +7,7 @@ const Wrapper = styled.div`
     color: ${props => props.theme.fontColorPrimary};
     display:flex;
     flex-direction: column;
+    font-size: 1.6rem;
 `
 const Copyright = styled.p`
     // background-color: #202020;
