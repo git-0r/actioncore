@@ -13,7 +13,7 @@ const Icons = styled.div`
     &:hover{
         visibility: visible;
     }
-    ${mobile({ visibility: "visible" })}
+    ${mobile({ display: "none" })}
 `
 
 
@@ -42,7 +42,7 @@ const Container = styled.div`
    &:hover ${Icons}{
        visibility : visible;
    }
-    ${mobile({ width: "100vw", margin: "40px 0" })}
+    ${mobile({ width: "100vw", margin: "20px 0" })}
    ${mobileSm({ flexDirection: "column" })}
 `
 
@@ -69,6 +69,7 @@ const Image = styled.img`
 
 const Info = styled.div`
     width: 40vw;
+    font-size: 1.2rem;
     display: flex;
     flex-direction: column;
     
@@ -76,7 +77,7 @@ const Info = styled.div`
         background: #FF3535;
     }
 
-    ${mobile({ width: "90%", order: "0 !important" })}
+    ${mobile({ width: "85%", order: "0 !important" })}
 `
 
 const Icon = styled.div`

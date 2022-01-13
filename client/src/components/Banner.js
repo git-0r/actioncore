@@ -4,7 +4,7 @@ import styled from "styled-components"
 const BannerImg = styled.img`
     margin: 50px auto;
     display:block;
-    width:90vw;
+    width:90%;
     border-radius: 5px;
     background: black;
     cursor:pointer;

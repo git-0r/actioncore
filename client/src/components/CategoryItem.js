@@ -66,8 +66,8 @@ const Desc = styled.p`
         background: #FF3535;
     }
 
-    ${mobile({ fontSize: "1.2rem" })};
-    ${mobileSm({ width: "90%", order: "0 !important", margin: "50px 0" })}
+    ${mobile({})};
+    ${mobileSm({ width: "85%", order: "0 !important", margin: "50px 0" })}
 
 
 `
