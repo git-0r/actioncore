@@ -14,10 +14,13 @@ import Notification from "../components/Notification"
 import Loader from "../components/Loader"
 import { operationComplete, operationStart } from "../redux/statusRedux"
 
-const Container = styled.div``
+const Container = styled.div`
+    background-color: ${props => props.theme.bgSecondary};
+    color: ${props => props.theme.fontColorPrimary};
+`
 
 const Wrapper = styled.div`
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     padding: 20px;
     ${mobile({ padding: "10px" })}
 `
@@ -33,16 +36,7 @@ const Top = styled.div`
     justify-content: space-between;
     padding: 20px;
 `
-const TopButton = styled.button`
-    padding: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    color:white;
-    border: ${props => props.type === "filled" && "none"};
-    background-color: ${props => props.type === "filled" ? "black" : "transparent"};
-    color: ${props => props.type === "filled" && "white"};
 
-`
 const TopTexts = styled.div`
     ${mobile({ display: "none" })}
 `
@@ -88,7 +82,6 @@ const Details = styled.div`
 const ProductName = styled.span``
 
 const ProductId = styled.span`
-    // font-size: 12px;
     color:gray;
 `
 
@@ -170,21 +163,14 @@ const Cart = () => {
     const handleQuantity = async (operation, product) => {
         try {
             if (operation === "add") {
-                // dispatch(addProductStart())
                 dispatch(operationStart())
 
                 const updatedCart = await handleAddProduct({ ...product, quantity: 1 }, userId)
-                // const updatedCart = handleAddProduct({ ...product, quantity: 1 })
                 if (user) {
-                    // try {
                     await saveCartToDB(user._id, updatedCart)
                     dispatch(
                         addProductSuccess(updatedCart)
                     )
-                    // }
-                    //  catch (error) {
-                    // dispatch(addProductFailure())
-                    // }
                 } else {
                     dispatch(
                         addProductSuccess(updatedCart)
@@ -193,20 +179,13 @@ const Cart = () => {
                 dispatch(operationComplete())
             } else if (operation === "remove") {
 
-                // dispatch(removeProductStart())
                 dispatch(operationStart())
                 const updatedCart = await handleRemoveProduct({ ...product, quantity: 1 }, userId)
-                // const updatedCart = handleRemoveProduct({ ...product, quantity: 1 })
                 if (user) {
-                    // try {
                     await saveCartToDB(user._id, updatedCart)
                     dispatch(
                         removeProductSuccess(updatedCart)
                     )
-                    // } 
-                    // catch (error) {
-                    // dispatch(removeProductFailure())
-                    // }
                 } else {
                     dispatch(
                         removeProductSuccess(updatedCart)
@@ -234,14 +213,12 @@ const Cart = () => {
                 async function refreshCart() {
                     dispatch(operationStart())
                     const cart = await getCartFromDb(userId)
-                    // console.log("cart", cart)
                     dispatch(updateCartFromDB(cart))
                     dispatch(operationComplete())
                 }
                 refreshCart()
             }
         } catch (error) {
-            // console.log("error caught", error)
             dispatch(operationComplete())
             setNotification(<Notification reason="failure" message="Error !" />)
             setTimeout(() => {
@@ -263,16 +240,13 @@ const Cart = () => {
             {notification}
             {isFetching && <Loader />}
             <Navbar />
-            {/* <Announcement /> */}
             <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>
-                    {/* <TopButton>CONTINUE SHOPPING</TopButton> */}
                     <TopTexts>
                         <TopText>Shopping Bag({cart?.products?.length})</TopText>
                         <TopText>Your Wishlist(0)</TopText>
                     </TopTexts>
-                    {/* <TopButton type="filled">CHECKOUT NOW</TopButton> */}
                 </Top>
                 <Bottom>
                     <Info>

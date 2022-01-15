@@ -7,14 +7,9 @@ const Wrapper = styled.div`
 `
 
 const MenuOption = styled.div`
-    // font-size: 16px;
     letter-spacing: 1px;
     cursor:pointer;
     margin: 20px;
-
-    &:hover{
-        // color: #FF3535;
-    }
 `
 const animateMenu = keyframes`
     from {
@@ -28,18 +23,12 @@ const animateMenu = keyframes`
 `
 
 const MenuItem = styled.ul`
-    // color: #191919;
-    // background-color: #F5F5F5;
     padding: 10px 20px;
     margin: 5px;
-    // text-align: center;
-    // border: 1px solid #FF3535;
     animation: ${animateMenu} 0.1s ease;
-    // transition: all 0.5s ease;
 `
 const MenuItems = styled.li`
     list-style: none;
-    // font-size: 14px;
     white-space: nowrap;
     cursor:pointer;
     margin: 10px 0;

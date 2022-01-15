@@ -19,10 +19,6 @@ const Container = styled.div`
 })
     }   
     }
-
-    // flexDirection: "column",
-    //     height: "350px",
-    //     overflowX: "auto",
 `
 
 const Title = styled.h1`
@@ -72,29 +68,31 @@ const ProductList = () => {
 
     const handleFilters = (e) => {
         const value = e.target.value
-        setFilters({
-            ...filters,
-            [e.target.name]: value
-        })
+        setFilters(
+            {
+                ...filters,
+                [e.target.name]: value
+            }
+        )
     }
 
     return (
         <Container>
             <Navbar />
             {/* <Announcement /> */}
-            <Title>{cat}</Title>
+            <Title> > {cat}</Title>
             <FilterContainer>
                 <Filter>
                     <FilterText>Filter Products:</FilterText>
                     <Select name="color" onChange={handleFilters}>
-                        <Option disabled>Color</Option>
-                        <Option>white</Option>
-                        <Option>blue</Option>
-                        <Option>red</Option>
-                        <Option>blue</Option>
-                        <Option>yellow</Option>
-                        <Option>green</Option>
-                        <Option>black</Option>
+                        <Option disabled selected>Color</Option>
+                        <Option value="white">white</Option>
+                        <Option value="blue">blue</Option>
+                        <Option value="red">red</Option>
+                        <Option value="blue">blue</Option>
+                        <Option value="yellow">yellow</Option>
+                        <Option value="green">green</Option>
+                        <Option value="black">black</Option>
                     </Select>
                     {/* <Select name="size" onChange={handleFilters}>
                         <Option disabled>Size</Option>

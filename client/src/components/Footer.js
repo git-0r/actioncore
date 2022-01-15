@@ -10,7 +10,6 @@ const Wrapper = styled.div`
     font-size: 1.6rem;
 `
 const Copyright = styled.p`
-    // background-color: #202020;
     background: ${props => props.theme.bgPrimary};
     margin: 0;
     text-align:center;
@@ -142,7 +141,10 @@ const Footer = () => {
                     <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
                 </Right>
             </Container>
-            <Copyright>Copyright &copy; 2022, Action Core Pvt. Ltd. All Rights Reserved.</Copyright>
+            <Copyright>
+                All the images, and graphics used belong to their respective owners .
+
+            </Copyright>
         </Wrapper>
     )
 }

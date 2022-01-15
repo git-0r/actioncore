@@ -17,8 +17,6 @@ const Wrapper = styled.div`
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    // flex-wrap: nowrap;
-    // overflow-x: auto;
     justify-content: space-evenly;
 
     &::-webkit-scrollbar {
@@ -31,8 +29,6 @@ const Wrapper = styled.div`
 
     ${mobile(
     {
-        // width: "2400px",
-        // flexWrap: "nowrap",
         flexDirection: "column",
         height: "350px",
         overflowX: "auto",
@@ -40,10 +36,8 @@ const Wrapper = styled.div`
 )}
 `
 const Title = styled.p`
-    // font-family: "Luckiest Guy", cursive;
     font-family: 'Inter', sans-serif;
     font-weight: 900;
-    // letter-spacing: 5px;
     font-size: 8rem;
     text-align: center;
     background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%) ;

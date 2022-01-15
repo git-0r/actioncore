@@ -87,11 +87,6 @@ const Slider = () => {
                         <ImgContainer>
                             <Image src={item.img} />
                         </ImgContainer>
-                        {/* <InfoContainer>
-                            <Title>{item.title}</Title>
-                            <Desc>{item.desc}</Desc>
-                            <Button>SHOP NOW</Button>
-                        </InfoContainer> */}
                     </Slide>
                 ))}
             </Wrapper>

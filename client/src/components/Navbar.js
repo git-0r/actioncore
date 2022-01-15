@@ -15,7 +15,6 @@ const Container = styled.div`
     height: 60px;
     background: ${props => props.theme.bgSecondary};
     font-size: 1.4rem;
-    // border-bottom: 1px solid rgba(255,69,69, 0.1);
 
 `
 const Wrapper = styled.div`
@@ -44,6 +43,7 @@ const SearchContainer = styled.div`
     z-index: 3;
 `
 const Input = styled.input`
+    color: white;
     width: 80%;
     border: 1px solid gray;
     padding: 10px;
@@ -53,7 +53,10 @@ const Input = styled.input`
 const SearchIcon = styled.div`
     position: absolute;
     top: 27px;
-    left: 7vw;
+    left: 10rem;
+    ${mobile({
+    left: "6rem"
+})}
 `
 
 const Center = styled.div`
@@ -106,7 +109,6 @@ const MenuItem = styled.ul`
     text-align: left;
     top: 80%;
     display:none;
-    color: ${props => props.theme.fontColorPrimary};
     z-index: 2;
 `
 const MenuItems = styled.li`
@@ -114,7 +116,7 @@ const MenuItems = styled.li`
     padding: 5px;
     white-space: nowrap;
     cursor:pointer;
-
+    color: ${props => props.theme.fontColorPrimary};
 
     &:hover{
         text-decoration: underline;

@@ -7,11 +7,3 @@ export const mobile = (props) => {
         }
     `
 }
-
-// export const mobileSm = (props) => {
-//     return css`
-//         @media only screen and (max-width: 850px){
-//             ${props}
-//         }
-//     `
-// }

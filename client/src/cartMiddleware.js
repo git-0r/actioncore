@@ -1,4 +1,7 @@
-import { getCartFromDb } from "./redux/apiCalls"
+import Notification from "./components/Notification"
+import { getCartFromDb, saveCartToDB } from "./redux/apiCalls"
+import { addProductSuccess } from "./redux/cartRedux"
+import { operationComplete, operationStart } from "./redux/statusRedux"
 import { store } from "./redux/store"
 
 export const handleAddProduct = async (newProduct, userId) => {
@@ -64,3 +67,30 @@ export const handleRemoveProduct = async (productToBeRemoved, userId) => {
     return updatedCart
 }
 
+export const addToCart = async (dispatch, product, quantity, user, setNotification) => {
+    try {
+        dispatch(operationStart())
+        const updatedCart = await handleAddProduct({ ...product, quantity }, user?._id)
+        if (user) {
+            await saveCartToDB(user._id, updatedCart)
+            dispatch(
+                addProductSuccess(updatedCart)
+            )
+        } else {
+            dispatch(
+                addProductSuccess(updatedCart)
+            )
+        }
+        setNotification(<Notification reason="success" message="added to cart" />)
+        setTimeout(() => {
+            setNotification(null)
+        }, 3000)
+        dispatch(operationComplete())
+    } catch (error) {
+        dispatch(operationComplete())
+        setNotification(<Notification reason="failure" message="Error !" />)
+        setTimeout(() => {
+            setNotification(null)
+        }, 3000)
+    }
+}

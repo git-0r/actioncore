@@ -21,8 +21,6 @@ const Wrapper = styled.div`
     width: 40%;
     padding: 30px 20px;
     background-color: transparent;
-    // border: 1px solid #FF3535;
-    // border-radius: 5px;
     border-radius: 5px;
     border-width: 2px;
     border-style: solid;
@@ -31,8 +29,6 @@ const Wrapper = styled.div`
 
 `
 const Title = styled.h1`
-    // font-size: 24px;
-    // font-weight: 300;
     color: #FF3535;
     font-family: 'Ubuntu';
     background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%) ;
@@ -64,9 +60,6 @@ const Button = styled.button`
     width: 40%;
     border: none;
     padding: 15px 20px;
-    // background-color: transparent;
-    // border: 1px solid #FF3535;
-    // color: #FF3535;
     background-color: #1E1C1C;
     color: white;
     cursor: pointer;

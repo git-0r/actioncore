@@ -5,7 +5,6 @@ const stripe = require("stripe")(process.env.STRIPE_KEY)
 
 router.post("/payment", async (req, res) => {
     const products = req.body.products
-    console.log(req.body)
     const session = await stripe.checkout.sessions.create(
         {
             line_items: products.map(product => {

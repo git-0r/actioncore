@@ -5,7 +5,6 @@ import CategoryItem from "./CategoryItem"
 import Banner from "../components/Banner"
 
 const Container = styled.div`
-    // background-color: #202020;
     background-color: ${props => props.theme.bgSecondary};
     color: ${props => props.theme.fontColorSecondary};
     padding: 20px;
@@ -14,14 +13,10 @@ const Container = styled.div`
 `
 const Title = styled.p`
     text-align:center;
-    // font-family: "Luckiest Guy", cursive;
     font-family: 'Inter', sans-serif;
-    // letter-spacing: 5px;
     font-size: 8rem;
     font-weight: 900;
-    // #FD2D00,#DF007C
     background-image: linear-gradient(135deg, #DF007C 0%, #FD2D00 100%) ;
-    // background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%) ;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -31,8 +26,6 @@ const Title = styled.p`
 const Products = styled.div`
     display:flex;
     flex-direction: column;
-    // justify-content:space-evenly;
-    // flex-wrap:wrap;
 
     & div:nth-of-type(2n) p{
         order: -1;

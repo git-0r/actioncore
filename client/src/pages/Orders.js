@@ -8,11 +8,12 @@ import { mobile } from "../responsive"
 
 
 const Container = styled.div`
+    font-size: 1.5rem;
 
 `
 const Wrapper = styled.div`
     padding:50px;
-    ${mobile({ padding: "10px" })}
+    ${mobile({ padding: "20px" })}
 `
 
 const Title = styled.h1`
@@ -37,7 +38,7 @@ const AmountDetails = styled.div`
     display:flex;
     flex:1;
     justify-content: space-between;
-    ${mobile({ justifyContent: "space-between", width: "100%" })}
+    ${mobile({ justifyContent: "space-between", width: "90%" })}
 `
 
 const ProductCost = styled.p``

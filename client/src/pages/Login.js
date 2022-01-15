@@ -15,15 +15,12 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    // ${mobile({ flexDirection: "column" })}
 `
 
 const Wrapper = styled.div`
-    width: 25%;
+    width: 30%;
     padding: 20px;
     background-color: transparent;
-    color:white;
-    // border: 1px solid rgba(255,53,53,0.5);
     border-radius: 5px;
     border-width: 2px;
     border-style: solid;
@@ -34,7 +31,6 @@ const Wrapper = styled.div`
 const Title = styled.h1`
     font-size: 24px;
     font-weight: 300;
-    // color: #FF3535;
     font-family: 'Ubuntu';
     background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%) ;
     background-clip: text;
@@ -73,25 +69,13 @@ const Button = styled.button`
         transform: scale(1.05);
         box-shadow: 2px 2px 2px #FD2D00;
     }
-    // border: none;
-    // padding: 15px 20px;
-    // background: transparent;
-    // border: 1px solid #FF3535;
-    // color: #FF3535;
-    // cursor: pointer;
-    // margin-bottom: 10px;
-
-    // $:disabled{
-    //     color: green;
-    //     cursor: not-allowed;
-    // }
 `
 const FormLink = styled.a`
     margin: 5px 0px;
-    font-size: 12px;
+    color: #191919;
+    font-size: 1.2rem;
     text-decoration: underline;
     cursor: pointer;
-    color:white;
 `
 const Error = styled.span`
     color: red;
@@ -99,7 +83,6 @@ const Error = styled.span`
 
 const FormLinks = styled.div`
     margin: 5px 0px;
-    font-size: 12px;
     cursor: pointer;
 `
 const rotate = keyframes`
@@ -112,15 +95,6 @@ const rotate = keyframes`
 `
 const Logo = styled.div`
     animation: ${rotate} 5s linear infinite;
-    // color: #FF4545;
-    // margin: 0;
-    // padding: 5px;
-    // border-bottom: 5px solid #FF3535;
-    // font-family: 'Ubuntu', sans-serif;
-    // font-size: 70px;
-    // letter-spacing: 2px;
-    // color:white;
-    // ${mobile({ fontSize: "40px" })}
 `
 
 const Login = () => {
@@ -150,7 +124,6 @@ const Login = () => {
 
     return (
         <Container>
-            {/* <Logo>ACTION<br />CORE</Logo> */}
             {notification}
             <Wrapper>
                 <Title>Sign In</Title>
@@ -171,25 +144,14 @@ const Login = () => {
 
                             : <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
                     }
-                    {/* <Button disabled={isFetching} style={{ padding: "5px 0" }}>
-                        <Logo>
-                            <SportsEsports style={{ fontSize: "2rem", color: "#FF4545" }} />
-                        </Logo>
-                    </Button> */}
                     {error && <Error>Something went wrong...</Error>}
                     <FormLink>Forgotten password?</FormLink>
                     <FormLinks>
-                        <Link to="/register" style={{ color: "white" }}>Create New Account
+                        <Link to="/register">Create New Account
                         </Link>
                     </FormLinks>
                 </Form>
             </Wrapper>
-            {/* {
-                isFetching ??
-                <Logo>
-                    <SportsEsports style={{ fontSize: "4rem", color: "#FF4545" }} />
-                </Logo>
-            } */}
         </Container>
     )
 }

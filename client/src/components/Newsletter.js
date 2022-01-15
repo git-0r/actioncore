@@ -4,8 +4,6 @@ import { mobile } from "../responsive"
 import Banner from "../components/Banner"
 
 const Container = styled.div`
-    // height: 100vh;
-    // background-color: #191919;
     background: ${props => props.theme.bgSecondary};
     color: ${props => props.theme.fontColorSecondary};
     display: flex;
@@ -22,16 +20,14 @@ const Title = styled.h1`
     -webkit-background-clip: text;
     color: transparent;
     margin: 30px;
-    // font-family: 'Luckiest Guy', cursive;
     font-family: 'Inter', sans-serif;
     font-weight: 900;
-    // letter-spacing:5px;
     ${mobile({ fontSize: "40px" })}
 `
 const Desc = styled.div`
     font-size: 2rem;
     font-weight: 300;
-    margin-bottom: 60px;
+    margin: 0 20px 60px 20px;
     color: ${props => props.theme.fontColorPrimary};
 
     ${mobile({ textAlign: "center", fontSize: "18px" })}
@@ -55,9 +51,7 @@ const Input = styled.input`
 const Button = styled.button`
     flex: 2;
     border: none;
-    // background-color: #FF3535;
     background: linear-gradient(135deg, rgb(214, 255, 127) 0%, rgb(0, 179, 204) 100%);
-    // font-size: 5rem;
     color: white;
 `
 
